@@ -3,6 +3,7 @@
 #include "include/llk_api.h"
 
 #include "x86_64/include/cpu.h"
+#include "x86_64/include/gdt.h"
 #include "x86_64/include/isa.h"
 #include "x86_64/include/serial.h"
 
@@ -20,6 +21,12 @@ int llk_init_serial(void)
 void llk_serial_putc(const char c)
 {
         serial_putc(c);
+}
+
+/*Memory*/
+void llk_init_memory(void)
+{
+        setup_gdt();
 }
 
 #endif
