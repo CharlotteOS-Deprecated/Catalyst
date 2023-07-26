@@ -1,3 +1,3 @@
 # The Catalyst Kernel
 
-This is the WIP kenrnel for ZerOS, a hobby operating that is designed to be user friendly, fast, and secure.
+This is the WIP kernel for ZerOS, a hobby operating that is designed to be user friendly, fast, and secure.
