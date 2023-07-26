@@ -4,7 +4,7 @@
 #include "../limine/limine.h"
 
 /*architecture specific setup*/
-#include "llk/api/include/llk_api.h"
+#include "llk/include/llk_api.h"
 
 /*architecture independent includes*/
 #include "hlk/include/string.h"

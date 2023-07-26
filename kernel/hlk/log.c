@@ -1,6 +1,6 @@
 #include "hlk/include/log.h"
 
-#include "llk/api/include/llk_api.h"
+#include "llk/include/llk_api.h"
 
 void log_puts(const char *str)
 {

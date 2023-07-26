@@ -1,5 +1,5 @@
-#include "llk/x64_uefi_acpi/include/serial.h"
-#include "llk/x64_uefi_acpi/include/isa.h"
+#include "llk/x86_64/include/serial.h"
+#include "llk/x86_64/include/isa.h"
 
 #include <stdint.h>
 #include <stdbool.h>

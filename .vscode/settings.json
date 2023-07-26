@@ -1,0 +1,6 @@
+{
+        "files.associations": {
+                "type_conv.h": "c",
+                "log.h": "c"
+        }
+}
