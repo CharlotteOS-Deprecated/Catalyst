@@ -12,6 +12,10 @@ void inline llk_disable_interrupts(void)
 {
         disable_interrupts();
 }
+void inline llk_enable_interrupts(void)
+{
+        enable_interrupts();
+}
 void llk_hcf(void)
 {
         hcf();

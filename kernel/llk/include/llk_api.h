@@ -9,6 +9,12 @@ Postconditions: All maskable interrupts are disabled on the calling logical proc
 */
 void inline llk_disable_interrupts(void);
 /*
+Enables all maskable interrupts
+Preconditions: None
+Postconditions: All maskable interrupts are enabled on the calling logical processor
+*/
+void inline llk_enable_interrupts(void);
+/*
 Initializes a logical processor.
 Preconditions: None
 Postconditions: The processor will be initialized and ready to execute both kernel
