@@ -8,6 +8,10 @@
 #include "x86_64/include/serial.h"
 
 /*CPU*/
+void inline llk_disable_interrupts(void)
+{
+        disable_interrupts();
+}
 void llk_hcf(void)
 {
         hcf();
