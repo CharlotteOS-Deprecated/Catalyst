@@ -23,7 +23,7 @@ $(eval $(call DEFAULT_VAR,ARCH,$(DEFAULT_ARCH)))
 # We are only using "cc" as a placeholder here. It may work by using
 # the host system's toolchain, but this is not guaranteed.
 override DEFAULT_CC := cc
-$(eval $(call DEFAULT_VAR,CC,$(DEFAULT_CC)))
+$(eval $(call DEFAULT_VAR,CC,clang))
 
 override CC_IS_CLANG := no
 ifeq ($(shell $(CC) --version 2>&1 | grep -i 'clang' >/dev/null 2>&1 && echo 1),1)
@@ -56,7 +56,7 @@ $(eval $(call DEFAULT_VAR,LDFLAGS,$(DEFAULT_LDFLAGS)))
 override CFLAGS += \
     -Wall \
     -Wextra \
-    -std=gnu11 \
+    -std=c2x \
     -ffreestanding \
     -fno-stack-protector \
     -fno-stack-check \
