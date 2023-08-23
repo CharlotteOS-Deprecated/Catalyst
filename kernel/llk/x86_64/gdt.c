@@ -1,6 +1,6 @@
 #include "x86_64/include/gdt.h"
 
-#include "include/llk_api.h"
+#include "include/cpu.h"
 #include <stdint.h>
 #include <stddef.h>
 
@@ -14,7 +14,11 @@ void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_
         *segment_descriptor |= (flags && 0xF) << 52; //encode the flags field
 }
 
-void setup_gdt(void)
+void setup_gdt(uint64_t gdt[6])
 {
-        llk_disable_interrupts();
+        disable_interrupts();
+        //null descriptor
+        create_segment_descriptor(&gdt[0], 0, 0, 0, 0);
+
+        enable_interrupts();
 }
