@@ -1,8 +1,11 @@
+#include <stdint.h>
+#include <stddef.h>
+
 #include "include/gdt.h"
 
 #include "include/cpu.h"
-#include <stdint.h>
-#include <stddef.h>
+#include "include/tss.h"
+
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
 {
@@ -22,7 +25,7 @@ void create_system_segment_descriptor(uint64_t *dest_lower, const uint64_t base,
         *dest_upper = 0ul | ((base & 0xFFFFFFFF00000000) >> 32ul);
 }
 
-void setup_gdt(uint64_t gdt[7])
+void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0)
 {
         disable_interrupts();
 
@@ -36,7 +39,9 @@ void setup_gdt(uint64_t gdt[7])
         create_segment_descriptor(&gdt[3], 0, 0xFFFFF, 0xF2, 0xC);
         //user mode data segment descriptor
         create_segment_descriptor(&gdt[4], 0, 0xFFFFF, 0xF2, 0xC);
-        //TODO: task state segments
+        //task state segment
+        setup_tss(tss, rsp0);
+        create_system_segment_descriptor(&gdt[5], tss, (*tss) * TSS_N_ELEMENTS, 0x89, 0x0);
 
         enable_interrupts();
 }
