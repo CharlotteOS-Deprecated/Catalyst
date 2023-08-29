@@ -6,12 +6,15 @@
 #include "x86_64/include/gdt.h"
 #include "x86_64/include/isa.h"
 #include "x86_64/include/serial.h"
+#include "x86_64/include/tss.h"
 
 #include "../hlk/include/log.h"
 #include "../hlk/include/string.h"
 #include "../hlk/include/type_conv.h"
 
-static uint64_t gdt[7];
+static gdt_t gdt;
+static tss_t tss;
+static uint8_t bsp_stack[1024];
 
 /*CPU*/
 void inline llk_disable_interrupts(void)
@@ -29,15 +32,15 @@ void llk_hcf(void)
 }
 void llk_init_lp(void)
 {
-        setup_gdt(gdt);
+        setup_gdt(gdt, tss, &bsp_stack[1024]);
         log_puts("Global Descriptor Table:\r\n");
-        llk_hcf();
         for (size_t i = 0; i < 7; ++i) {
                 memset(temp_str, '\0', 1024);
                 u64_to_hex_str(gdt[i], temp_str);
                 log_puts(temp_str);
                 log_puts("\r\n");
         }
+        load_gdt(gdt);
 }
 
 /*Serial Port*/

@@ -32,7 +32,7 @@ endif
 
 # Same thing for "ld" (the linker).
 override DEFAULT_LD := ld
-$(eval $(call DEFAULT_VAR,LD,$(DEFAULT_LD)))
+$(eval $(call DEFAULT_VAR,LD,ld.lld))
 
 # User controllable C flags.
 override DEFAULT_CFLAGS := -g -O2 -pipe
@@ -63,7 +63,8 @@ override CFLAGS += \
     -fno-stack-protector \
     -fno-stack-check \
     -fno-lto \
-    -fPIE
+    -fPIE \
+    -mcmodel=kernel
 
 # Internal C preprocessor flags that should not be changed by the user.
 override CPPFLAGS := \

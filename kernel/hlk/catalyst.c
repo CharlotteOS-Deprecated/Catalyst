@@ -20,7 +20,7 @@ void catalyst_main(void)
 	}
 	log_puts("Starting Catalyst Kernel\r\n");
 
-	//llk_init_lp();
+	llk_init_lp();
 	log_puts("Initialized BSP\r\n");
 	// We're done, just hang...
 	log_puts("Halting...\r\n");

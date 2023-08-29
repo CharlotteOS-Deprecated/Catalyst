@@ -1,5 +1,6 @@
 bits 64
 
+section .text
 global inb
 inb:
 	mov dx, di
