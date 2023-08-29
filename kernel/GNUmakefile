@@ -56,6 +56,8 @@ $(eval $(call DEFAULT_VAR,LDFLAGS,$(DEFAULT_LDFLAGS)))
 override CFLAGS += \
     -Wall \
     -Wextra \
+    -Werror \
+    -pedantic \
     -std=c2x \
     -ffreestanding \
     -fno-stack-protector \
@@ -85,7 +87,6 @@ ifeq ($(ARCH),x86_64)
     override CFLAGS += \
         -m64 \
         -march=x86-64 \
-        -mabi=sysv \
         -mno-80387 \
         -mno-mmx \
         -mno-sse \

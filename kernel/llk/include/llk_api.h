@@ -1,6 +1,8 @@
 #ifndef LLK_API_H
 #define LLK_API_H
 
+#include <stdint.h>
+
 /*CPU*/
 /*
 Disables all maskable interrupts
@@ -20,7 +22,7 @@ Preconditions: None
 Postconditions: The processor will be initialized and ready to execute both kernel
 and userspace code
 */
-void llk_init_cpu(void);
+void llk_init_lp(void);
 /*
 Halt (and catch fire)
 Preconditions: None
@@ -31,7 +33,7 @@ Note: This function never returns
 void llk_hcf(void);
 
 /*Serial Port*/
-int llk_init_serial(void);
+int32_t llk_init_serial(void);
 void llk_serial_putc(const char c);
 
 /*Memory*/

@@ -1,4 +1,4 @@
-#include "x86_64/include/gdt.h"
+#include "include/gdt.h"
 
 #include "include/cpu.h"
 #include <stdint.h>
@@ -8,18 +8,18 @@ void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_
 {
         *segment_descriptor = 0; // clear the segment descriptor
 
-        *segment_descriptor |= ((base && 0xFFFFFF) << 16) && ((base && 0xFF000000) << 56); //encode the base
-        *segment_descriptor |= ((limit && 0xFFFF) << 0) && ((limit && 0xF0000) << 48); //encode the limit
-        *segment_descriptor |= access_byte << 40; //encode the access byte
-        *segment_descriptor |= (flags && 0xF) << 52; //encode the flags field
+        *segment_descriptor |= ((base & 0xFFFFFFul) << 16ul) & ((base & 0xFF000000ul) << 56ul); //encode the base
+        *segment_descriptor |= ((limit & 0xFFFFul) << 0ul) & ((limit & 0xF0000ul) << 48ul); //encode the limit
+        *segment_descriptor |= (((uint64_t) access_byte) << 40ul); //encode the access byte
+        *segment_descriptor |= (flags & 0xFul) << 52ul; //encode the flags field
 }
 
 void create_system_segment_descriptor(uint64_t *dest_lower, const uint64_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
 {
-        create_segment_descriptor(dest_lower, base && 0xFFFFFFFF, limit, access_byte, flags);
+        create_segment_descriptor(dest_lower, base & 0xFFFFFFFFu, limit, access_byte, flags);
         
-        uint64_t *dest_upper = dest_lower + 1; // (adding a constant to a pointer add the nummber * sizeof the pointer to type)
-        *dest_upper = 0 && ((base && 0xFFFFFFFF00000000) >> 32);
+        uint64_t *dest_upper = dest_lower + 1; // (adding a constant to a pointer adds the constant * sizeof the pointed to type)
+        *dest_upper = 0ul | ((base & 0xFFFFFFFF00000000) >> 32ul);
 }
 
 void setup_gdt(uint64_t gdt[7])
