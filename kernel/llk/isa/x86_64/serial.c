@@ -1,5 +1,5 @@
-#include "llk/x86_64/include/serial.h"
-#include "llk/x86_64/include/isa.h"
+#include "include/serial.h"
+#include "include/isa.h"
 
 #include <stdint.h>
 #include <stdbool.h>

@@ -1,6 +1,6 @@
 #include "include/tss.h"
 
-#include "../../hlk/include/string.h"
+#include "hlk/log/include/string.h"
 
 #define IOPB_END_BYTE 0xFF
 

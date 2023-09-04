@@ -1,15 +1,14 @@
-/*compiler and bootloader includes*/
+/*freestanding headers*/
 #include <stdint.h>
 #include <stddef.h>
-#include "../../limine/limine.h"
 
-/*hardware specific setup*/
-#include "llk/include/llk_api.h"
+/*llk isa subsystem*/
+#include "llk/isa/include/api.h"
 
-/*architecture independent includes*/
-#include "hlk/include/string.h"
-#include "hlk/include/type_conv.h"
-#include "hlk/include/log.h"
+/*hlk logging subsystem*/
+#include "log/include/string.h"
+#include "log/include/type_conv.h"
+#include "log/include/log.h"
 
 //kernel entry point
 void catalyst_main(void)

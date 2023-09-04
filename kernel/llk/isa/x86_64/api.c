@@ -1,20 +1,20 @@
 #ifdef __x86_64__
 
-#include "include/llk_api.h"
+#include "llk/isa/include/api.h"
 
-#include "x86_64/include/cpu.h"
-#include "x86_64/include/gdt.h"
-#include "x86_64/include/isa.h"
-#include "x86_64/include/serial.h"
-#include "x86_64/include/tss.h"
+#include "include/cpu.h"
+#include "include/gdt.h"
+#include "include/isa.h"
+#include "include/serial.h"
+#include "include/tss.h"
 
-#include "../hlk/include/log.h"
-#include "../hlk/include/string.h"
-#include "../hlk/include/type_conv.h"
+#include "hlk/log/include/log.h"
+#include "hlk/log/include/string.h"
+#include "hlk/log/include/type_conv.h"
 
 static gdt_t gdt;
 static tss_t tss;
-static uint8_t bsp_stack[1024];
+static uint8_t bsp_stack[4096];
 
 /*CPU*/
 void inline llk_disable_interrupts(void)

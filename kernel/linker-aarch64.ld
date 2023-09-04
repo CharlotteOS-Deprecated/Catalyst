@@ -3,7 +3,7 @@ OUTPUT_FORMAT(elf64-littleaarch64)
 OUTPUT_ARCH(aarch64)
 
 /* We want the symbol _start to be our entry point */
-ENTRY(_start)
+ENTRY(catalyst_main)
 
 /* Define the program headers we want so the bootloader gives us the right */
 /* MMU permissions */

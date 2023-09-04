@@ -6,7 +6,7 @@
 #include "include/cpu.h"
 #include "include/tss.h"
 
-#include "../../hlk/include/log.h"
+#include "hlk/log/include/log.h"
 
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)

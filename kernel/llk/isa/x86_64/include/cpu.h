@@ -3,7 +3,7 @@
 
 extern void disable_interrupts(void);
 extern void enable_interrupts(void);
-[[noreturn]]
+[[noreturn]] 
 extern void hcf(void);
 
 #endif

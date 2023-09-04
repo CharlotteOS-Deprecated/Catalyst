@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "hlk/include/string.h"
+#include "include/string.h"
 
 // GCC and Clang reserve the right to generate calls to the following
 // 4 functions even if they are not directly called.

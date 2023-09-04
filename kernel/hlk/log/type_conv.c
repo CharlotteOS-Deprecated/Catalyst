@@ -1,5 +1,5 @@
-#include "hlk/include/type_conv.h"
-#include "hlk/include/string.h"
+#include "include/type_conv.h"
+#include "include/string.h"
 
 #include <stdint.h>
 
