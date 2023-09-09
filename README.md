@@ -3,7 +3,7 @@
 ## A standalone 64-bit general purpose hobby operating system kernel
 
 ### Design
-- Hybrid kernel that allows performance critical drivers components to run in kernel space
+- Hybrid kernel that allows performance critical driver components to run in kernel space
 - Relatively stable kernel that is extensible via userspace kernel servers
 - Privilege-level based security and system call access
 - Low-level but hardware agnostic system call interface
