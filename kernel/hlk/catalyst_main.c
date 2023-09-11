@@ -28,6 +28,23 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "log/include/type_conv.h"
 #include "log/include/log.h"
 
+static const char license_string[] = \
+	"Catalyst: A Standalone General Purpose OS Kernel\r\n"
+	"Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)\r\n"
+
+	"This program is free software: you can redistribute it and/or modify\r\n"
+	"it under the terms of the GNU General Public License as published by\r\n"
+	"the Free Software Foundation, either version 3 of the License, or\r\n"
+	"(at your option) any later version.\r\n"
+
+	"This program is distributed in the hope that it will be useful,\r\n"
+	"but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n"
+	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\n"
+	"GNU General Public License for more details.\r\n"
+
+	"You should have received a copy of the GNU General Public License\r\n"
+	"along with this program. If not, see https://www.gnu.org/licenses/\r\n";
+
 //kernel entry point
 void catalyst_main(void)
 {
@@ -36,6 +53,9 @@ void catalyst_main(void)
 		llk_hcf();
 	}
 	log_puts("Starting Catalyst Kernel\r\n");
+	log_puts("\r\n");
+	log_puts(license_string);
+	log_puts("\r\n");
 
 	llk_init_lp();
 	log_puts("Initialized BSP\r\n");
