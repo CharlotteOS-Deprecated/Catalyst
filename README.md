@@ -19,4 +19,4 @@ the x86-64 based PC and server platforms with plans to port it to similar Arm ba
  ### Hardware Support
 - x86-64 implementation in progress
 - Aarch64 support planned
-- Either full UEFI and ACPI or EBBR and a Device Tree are required
+- Either full UEFI and ACPI support or EBBR and a Device Tree are required
