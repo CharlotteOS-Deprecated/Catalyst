@@ -69,6 +69,8 @@ void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0)
 // assembly routines used to load the GDT
 extern void set_gdt(const gdt_t gdt, volatile uint8_t gdtr[10]);
 extern void reload_segments(void);
+// assembly routine used to load the TSS
+extern void load_tss(void);
 
 void load_gdt(gdt_t gdt)
 {
@@ -77,4 +79,7 @@ void load_gdt(gdt_t gdt)
         set_gdt(gdt, gdtr);
         log_puts("Reloading Segment Registers\r\n");
         reload_segments();
+        log_puts("Reloading TSS Register\r\n");
+        load_tss();
+        log_puts("GDT change complete\r\n");
 }

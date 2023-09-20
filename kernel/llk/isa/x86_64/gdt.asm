@@ -40,3 +40,9 @@ reload_segments:
         mov gs, ax
         mov ss, ax
         ret
+global load_tss
+load_tss:
+        mov ax, 5
+        shl ax, 3
+        ltr ax
+        ret
