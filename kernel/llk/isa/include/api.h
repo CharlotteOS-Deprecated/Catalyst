@@ -54,7 +54,4 @@ void llk_hcf(void);
 int32_t llk_init_serial(void);
 void llk_serial_putc(const char c);
 
-/*Memory*/
-void llk_init_memory(void);
-
 #endif
