@@ -10,13 +10,12 @@ the x86-64 based PC and server platforms with plans to port it to similar Arm ba
 ### Design
 - Hybrid kernel
     - Relatively stable kernel that is extensible via userspace kernel servers
-    - Performance critical driver components can be moved into kernel space as needed
+    - Performance critical driver components can be moved into kernelspace as needed
 - Privilege-level based security and system call access
 - Low-level but hardware agnostic system call interface
 - Flexible enough to allow any API to be built on top of its system call interface
 - Boots using the Limine Boot Protocol
 
- ### Hardware Support
+### Hardware Support
 - x86-64 implementation in progress
-- Aarch64 support planned
 - UEFI and ACPI are required
