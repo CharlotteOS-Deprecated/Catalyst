@@ -29,8 +29,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "log/include/log.h"
 
 static const char license_string[] = \
-	"Catalyst: A Standalone General Purpose OS Kernel\r\n"
-	"Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)\r\n"
+	"Catalyst: A Standalone General Purpose OS Kernel\r\n\r\n"
+	"Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)\r\n\r\n"
 
 	"This program is free software: you can redistribute it and/or modify\r\n"
 	"it under the terms of the GNU General Public License as published by\r\n"
@@ -43,18 +43,18 @@ static const char license_string[] = \
 	"GNU General Public License for more details.\r\n"
 
 	"You should have received a copy of the GNU General Public License\r\n"
-	"along with this program. If not, see https://www.gnu.org/licenses/\r\n";
+	"along with this program. If not, see https://www.gnu.org/licenses/\r\n\r\n";
 
 //kernel entry point
-void catalyst_main(void)
+void main(void)
 {
 	//initialize COM1
 	if (llk_init_serial()) {
 		llk_hcf();
 	}
-	log_puts("Starting Catalyst Kernel\r\n");
-	log_puts("\r\n");
 	log_puts(license_string);
+	log_puts("\r\n");
+	log_puts("Initializing Catalyst\r\n");
 	log_puts("\r\n");
 
 	llk_init_lp();

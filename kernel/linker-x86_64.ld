@@ -2,8 +2,8 @@
 OUTPUT_FORMAT(elf64-x86-64)
 OUTPUT_ARCH(i386:x86-64)
 
-/* We want the symbol catalyst_main to be our entry point */
-ENTRY(catalyst_main)
+/* We want the symbol main to be our entry point */
+ENTRY(main)
 
 /* Define the program headers we want so the bootloader gives us the right */
 /* MMU permissions */

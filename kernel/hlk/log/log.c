@@ -16,16 +16,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
+#include <stddef.h>
+
 #include "include/log.h"
 
 #include "../../llk/isa/include/api.h"
 
 static void (*const log_putc)(const char) = &llk_serial_putc;
 
-void log_puts(const char *str)
+void log_puts(const char *const str)
 {
-	while (*str != '\0') {
-		log_putc(*str);
-		++str;
+	for (size_t i = 0; str[i] != '\0'; ++i) {
+		log_putc(str[i]);
 	}
 }

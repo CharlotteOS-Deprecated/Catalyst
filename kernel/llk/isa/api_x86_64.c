@@ -18,13 +18,12 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #ifdef __x86_64__
 
-#include "llk/isa/include/api.h"
+#include "include/api.h"
 
-#include "include/cpu.h"
-#include "include/gdt.h"
-#include "include/isa.h"
-#include "include/serial.h"
-#include "include/tss.h"
+#include "x86_64/include/cpu.h"
+#include "x86_64/include/gdt.h"
+#include "x86_64/include/serial.h"
+#include "x86_64/include/tss.h"
 
 #include "hlk/log/include/log.h"
 #include "hlk/log/include/string.h"
@@ -70,11 +69,6 @@ int32_t llk_init_serial(void)
 void llk_serial_putc(const char c)
 {
         serial_putc(c);
-}
-
-/*Memory*/
-void llk_init_memory(void)
-{
 }
 
 #endif
