@@ -5,7 +5,7 @@
 ### Status
 
 Catalyst is in the early stages of initial development with core kernel functionality first being developed for
-the x86-64 based PC and server platforms with plans to port it to similar Arm based devices in the future.
+the x86-64 based PC and server platforms.
 
 ### Design
 - Hybrid kernel
