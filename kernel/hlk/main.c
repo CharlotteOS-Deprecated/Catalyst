@@ -59,7 +59,12 @@ void main(void)
 
 	llk_init_lp();
 	log_puts("Initialized BSP\r\n");
+
+	log_puts("Performing interrupt test\r\n");
+	[[maybe_unused]]
+	volatile uint64_t a = 5, b = 0, c = 5;
+	c = a/b;
+
 	// We're done, just hang...
-	log_puts("Halting...\r\n");
 	llk_hcf();
 }

@@ -1,7 +1,7 @@
 bits 64
 
 section .text
-global set_idt
-set_idt:
+global load_idt
+load_idt:
         lidt [rdi]
         ret

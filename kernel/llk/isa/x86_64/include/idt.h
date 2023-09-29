@@ -37,13 +37,15 @@ enum gate_type {
 [[nodiscard]]
 inline bool is_gate_descriptor_present(const idt_t idt, const uint8_t index) 
 {
-        return idt[index * GATE_DESC_SZ] & (((uint64_t) 1) << GATE_DESC_PRESENT_BIT) ? true : false;
+        return *((uint64_t*) (&idt[index * GATE_DESC_SZ])) & (((uint64_t) 1) << GATE_DESC_PRESENT_BIT) ? true : false;
 }
 inline void set_gate_descriptor_present_bit(idt_t idt, const uint8_t index, const bool present_val)
 {
-        idt[index * GATE_DESC_SZ] &= (((uint64_t) (present_val ? 1 : 0)) << GATE_DESC_PRESENT_BIT);
+        if (is_gate_descriptor_present(idt, index) != present_val) {
+                *((uint64_t*) (&idt[index * GATE_DESC_SZ])) ^= (((uint64_t) (present_val ? 1 : 0)) << GATE_DESC_PRESENT_BIT);
+        }
 }
-void set_gate_descriptor(void *const dest, const uint64_t offset, const uint16_t segment_selector, const enum gate_type type, const bool is_present);
+void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void), const uint16_t segment_selector, const enum gate_type type, const bool is_present);
 inline void make_idt_desc(idt_desc_t dest, const idt_t idt)
 {
         uint16_t *const sz_ptr = (uint16_t *const) dest;

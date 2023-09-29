@@ -8,4 +8,8 @@ extern void hcf(void);
 extern uint8_t inb(volatile uint16_t);
 extern void outb(volatile uint16_t, volatile uint8_t);
 
+/*Interrupt Service Routines for CPU based Interrupts*/
+
+extern void isr_double_fault(void);
+
 #endif

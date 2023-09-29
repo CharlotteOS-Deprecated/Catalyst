@@ -54,4 +54,6 @@ void llk_hcf(void);
 int32_t llk_init_serial(void);
 void llk_serial_putc(const char c);
 
+extern void interrupt_test(void);
+
 #endif

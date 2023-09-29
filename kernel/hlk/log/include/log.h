@@ -19,6 +19,6 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef LOG_H
 #define LOG_H
 
-void log_puts(const char *str);
+extern void log_puts(const char *str);
 
 #endif
