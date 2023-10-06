@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -35,7 +35,7 @@ enum gate_type {
 };
 
 [[nodiscard]]
-inline bool is_gate_descriptor_present(const idt_t idt, const uint8_t index) 
+inline bool is_gate_descriptor_present(const idt_t idt, const uint8_t index)
 {
         return *((uint64_t*) (&idt[index * GATE_DESC_SZ])) & (((uint64_t) 1) << GATE_DESC_PRESENT_BIT) ? true : false;
 }
@@ -55,5 +55,7 @@ inline void make_idt_desc(idt_desc_t dest, const idt_t idt)
         *offset_ptr = (uint64_t) idt;
 }
 extern void load_idt(idt_desc_t desc);
+
+void setup_idt(idt_t idt);
 
 #endif

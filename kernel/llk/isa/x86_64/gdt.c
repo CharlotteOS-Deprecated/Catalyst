@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -25,6 +25,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "include/tss.h"
 
 #include "hlk/log/include/log.h"
+#include "hlk/log/include/string.h"
+#include "hlk/log/include/type_conv.h"
 
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
@@ -40,13 +42,15 @@ void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_
 void create_system_segment_descriptor(uint64_t *dest_lower, const uint64_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
 {
         create_segment_descriptor(dest_lower, base & 0xFFFFFFFFu, limit, access_byte, flags);
-        
+
         uint64_t *dest_upper = dest_lower + 1; // (adding a constant to a pointer adds the constant * sizeof the pointed to type)
         *dest_upper = ((base & 0xFFFFFFFF00000000) >> 32ul);
 }
 
 void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0)
 {
+        char temp_str[1024];
+
         disable_interrupts();
 
         //null descriptor
@@ -63,6 +67,15 @@ void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0)
         setup_tss(tss, rsp0);
         create_system_segment_descriptor(&gdt[5], (uint64_t) tss, (*tss) * TSS_N_ELEMENTS, 0x89, 0x0);
 
+        log_puts("Global Descriptor Table:\r\n");
+        for (size_t i = 0; i < 7; ++i) {
+                memset(temp_str, '\0', 1024);
+                u64_to_hex_str(gdt[i], temp_str);
+                log_puts(temp_str);
+                log_puts("\r\n");
+        }
+        load_gdt(gdt);
+
         enable_interrupts();
 }
 
@@ -75,6 +88,7 @@ extern void load_tss(void);
 void load_gdt(gdt_t gdt)
 {
         volatile uint8_t gdtr[10];
+
         log_puts("Setting GDT\r\n");
         set_gdt(gdt, gdtr);
         log_puts("Reloading Segment Registers\r\n");

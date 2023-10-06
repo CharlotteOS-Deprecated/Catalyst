@@ -16,20 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef CPU_H
-#define CPU_H
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 
-#include <stdint.h>
-
-extern void disable_interrupts(void);
-extern void enable_interrupts(void);
-[[noreturn]]
-extern void hcf(void);
-extern uint8_t inb(volatile uint16_t);
-extern void outb(volatile uint16_t, volatile uint8_t);
-
-/*Interrupt Service Routines for CPU based Interrupts*/
-
+/*Wrapped Exception Handlers for use in the IDT*/
 extern void isr_double_fault(void);
+
+/*Raw Exception Handler for use in the wrapped versions*/
+[[noreturn]]
+void ih_double_fault(void);
 
 #endif

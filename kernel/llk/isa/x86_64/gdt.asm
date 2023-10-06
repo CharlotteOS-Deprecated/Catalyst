@@ -20,7 +20,7 @@ section .text
 global set_gdt
 set_gdt:
         mov word [rsi], 56
-        mov qword [rsi + 2], rdi 
+        mov qword [rsi + 2], rdi
         lgdt [rsi]
         ret
 global reload_segments
