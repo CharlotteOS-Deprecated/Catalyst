@@ -1,21 +1,36 @@
 # The Catalyst Kernel
+A standalone 64-bit general-purpose hobby operating system kernel.
 
-## A standalone 64-bit general purpose hobby operating system kernel
+## Status
 
-### Status
+Catalyst is in the early stages of initial development, primarily targeting the x86-64 based PC and server platforms.
 
-Catalyst is in the early stages of initial development with core kernel functionality first being developed for
-the x86-64 based PC and server platforms.
+## Design
 
-### Design
-- Hybrid kernel
-    - Relatively stable kernel that is extensible via userspace kernel servers
-    - Performance critical driver components can be moved into kernelspace as needed
-- Privilege-level based security and system call access
-- Low-level but hardware agnostic system call interface
-- Flexible enough to allow any API to be built on top of its system call interface
-- Boots using the Limine Boot Protocol
+- **Hybrid Kernel**:
+  - A relatively stable kernel that is extensible via userspace kernel servers.
+  - Performance-critical driver components can be integrated directly into the kernel space as required.
 
-### Hardware Support
-- x86-64 implementation in progress
-- UEFI and ACPI are required
+- **Security & System Calls**:
+  - Security based on capabilities.
+  - Low-level but hardware-agnostic system call interface.
+  - Flexible enough to support various APIs built on top of the base system call interface.
+
+- **Bootloader**: Uses the [Limine Boot Protocol](https://github.com/limine-bootloader/limine).
+
+## Hardware Support
+
+- x86-64 implementation in progress.
+- UEFI and ACPI are required.
+
+## Building
+
+Building is as simple as running `make`.
+
+## Contributing
+
+If you're interested in contributing to the Catalyst Kernel, please reach out to [mdpatel.econ@gmail.com](mailto:mdpatel.econ@gmail.com).
+
+## License
+
+Catalyst Kernel is licensed under the [GNU General Public License Version 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) as published by the Free Software Foundation.
