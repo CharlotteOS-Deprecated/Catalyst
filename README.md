@@ -33,4 +33,4 @@ If you're interested in contributing to the Catalyst Kernel, please reach out to
 
 ## License
 
-Catalyst Kernel is licensed under the [GNU General Public License Version 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) as published by the Free Software Foundation.
+Catalyst is licensed under the [GNU General Public License Version 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) as published by the Free Software Foundation.
