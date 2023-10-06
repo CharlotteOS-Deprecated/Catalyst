@@ -21,15 +21,26 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include <stdint.h>
 
+// Global used to return from get_regs so that no general purpose registers
+// are used as out parameters and no memory need be allocated
+extern uint64_t g_cpu_regs[16];
+
+// Interrupt flag set/clear
 extern void disable_interrupts(void);
 extern void enable_interrupts(void);
-[[noreturn]]
-extern void hcf(void);
+
+// I/O Ports
 extern uint8_t inb(volatile uint16_t);
 extern void outb(volatile uint16_t, volatile uint8_t);
 
-/*Interrupt Service Routines for CPU based Interrupts*/
+// Save CPU registers to a global array
+extern void get_regs(void);
 
-extern void isr_double_fault(void);
+// Get interrupt error code
+extern uint64_t get_int_error_code(void);
+
+// Halt and catch fire aka panic
+[[noreturn]]
+extern void hcf(void);
 
 #endif

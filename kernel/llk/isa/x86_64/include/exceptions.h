@@ -19,11 +19,17 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef EXCEPTIONS_H
 #define EXCEPTIONS_H
 
-/*Wrapped Exception Handlers for use in the IDT*/
-extern void isr_double_fault(void);
+#include <stdint.h>
 
-/*Raw Exception Handler for use in the wrapped versions*/
-[[noreturn]]
-void ih_double_fault(void);
+/*Wrapped Exception Handlers for use in the IDT*/
+extern void isr_divide_by_zero(void);
+extern void isr_overflow(void);
+extern void isr_invalid_opcode(void);
+extern void isr_double_fault(void);
+extern void isr_general_protection_fault(void);
+extern void isr_page_fault(void);
+
+// For testing do not use in releases!!!
+extern void interrupt();
 
 #endif

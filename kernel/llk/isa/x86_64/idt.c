@@ -57,8 +57,13 @@ void setup_idt(idt_t idt)
         // Clear the IDT
         memset(idt, 0, IDT_N_ELEMENTS * GATE_DESC_SZ);
 
-        // install the double fault handler at vector 8
+        // install exception handlers at the appropriate interrupt vectors
+        set_gate_descriptor(idt, 0, isr_divide_by_zero, 1 << 3, TRAP_GATE, true);
+        set_gate_descriptor(idt, 4, isr_overflow, 1 << 3, TRAP_GATE, true);
+        set_gate_descriptor(idt, 6, isr_invalid_opcode, 1 << 3, TRAP_GATE, true);
         set_gate_descriptor(idt, 8, isr_double_fault, 1 << 3, TRAP_GATE, true);
+        set_gate_descriptor(idt, 13, isr_general_protection_fault, 1 << 3, TRAP_GATE, true);
+        set_gate_descriptor(idt, 14, isr_page_fault, 1 << 3, TRAP_GATE, true);
 
         log_puts("Interrupt Descriptor Table\r\n");
         for (size_t i = 0; i < 512; i+=8) {

@@ -63,7 +63,7 @@ override CFLAGS += \
     -fno-stack-protector \
     -fno-stack-check \
     -fno-lto \
-    -fPIE \
+    -fpic \
     -mcmodel=kernel
 
 # Internal C preprocessor flags that should not be changed by the user.

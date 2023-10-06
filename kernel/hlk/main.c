@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -22,6 +22,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 /*llk isa subsystem*/
 #include "llk/isa/include/api.h"
+#include "llk/isa/x86_64/include/cpu.h"
+#include "llk/isa/x86_64/include/exceptions.h"
 
 /*hlk logging subsystem*/
 #include "log/include/string.h"
@@ -61,10 +63,9 @@ void main(void)
 	log_puts("Initialized BSP\r\n");
 
 	log_puts("Performing interrupt test\r\n");
-	[[maybe_unused]]
-	volatile uint64_t a = 5, b = 0, c = 5;
-	c = a/b;
-
+	interrupt();
+        log_puts("Returned from interrupt service routine\r\n");
 	// We're done, just hang...
+        log_puts("Halting\r\n");
 	llk_hcf();
 }

@@ -16,6 +16,11 @@
 
 bits 64
 
+section .bss
+global g_cpu_regs
+g_cpu_regs:
+        dq 16 dup (?)
+
 section .text
 
 global disable_interrupts
@@ -27,12 +32,6 @@ global enable_interrupts
 enable_interrupts:
         sti
         ret
-
-global hcf
-hcf:
-        cli ;clear interrupt enable flag
-        hlt ;halt in a loop
-        jmp hcf
 
 global inb
 inb:
@@ -46,3 +45,35 @@ outb:
         mov al, sil
         out dx, al
         ret
+
+global get_regs
+get_regs:
+        mov [rel g_cpu_regs + 8 * 0], rax
+        mov [rel g_cpu_regs + 8 * 1], rbx
+        mov [rel g_cpu_regs + 8 * 2], rcx
+        mov [rel g_cpu_regs + 8 * 3], rdx
+        mov [rel g_cpu_regs + 8 * 4], rsi
+        mov [rel g_cpu_regs + 8 * 5], rdi
+        mov [rel g_cpu_regs + 8 * 6], rbp
+        mov [rel g_cpu_regs + 8 * 7], rsp
+        mov [rel g_cpu_regs + 8 * 8], r8
+        mov [rel g_cpu_regs + 8 * 9], r9
+        mov [rel g_cpu_regs + 8 * 10], r10
+        mov [rel g_cpu_regs + 8 * 11], r11
+        mov [rel g_cpu_regs + 8 * 12], r12
+        mov [rel g_cpu_regs + 8 * 13], r13
+        mov [rel g_cpu_regs + 8 * 14], r14
+        mov [rel g_cpu_regs + 8 * 15], r15
+        ret
+global get_int_error_code
+get_int_error_code:
+        pop rbx
+        pop rax
+        push rbx
+        ret
+
+global hcf
+hcf:
+        cli ;clear interrupt enable flag
+        hlt ;halt in a loop
+        jmp hcf
