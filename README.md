@@ -3,25 +3,25 @@ A standalone 64-bit general-purpose hobby operating system kernel.
 
 ## Status
 
-Catalyst is in the early stages of initial development, primarily targeting the x86-64 based PC and server platforms.
+Catalyst is in the early stages of initial development, initially targeting the x86-64 based PC and server platforms.
 
 ## Design
 
 - **Hybrid Kernel**:
-  - A relatively stable kernel that is extensible via userspace kernel servers.
-  - Performance-critical driver components can be integrated directly into the kernel space as required.
+  - A relatively stable kernel that is extensible via userspace kernel servers
+  - Performance-critical driver components can be integrated directly into the kernel space as required
 
 - **Security & System Calls**:
-  - Security based on capabilities.
-  - Low-level but hardware-agnostic system call interface.
-  - Flexible enough to support various APIs built on top of the base system call interface.
+  - Privilege level based security
+  - Minimalist system call interface offering close control over system primitives
 
-- **Bootloader**: Uses the [Limine Boot Protocol](https://github.com/limine-bootloader/limine).
+- **Bootloader**:
+  - Uses the [Limine Boot Protocol](https://github.com/limine-bootloader/limine)
 
 ## Hardware Support
 
-- x86-64 implementation in progress.
-- UEFI and ACPI are required.
+- x86-64 implementation in progress
+- UEFI and ACPI are required
 
 ## Building
 
