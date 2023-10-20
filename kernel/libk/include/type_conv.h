@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -23,8 +23,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 static char temp_str[1024];
 
-int u64_to_bin_str(const uint64_t n, char str[66]);
-int u64_to_hex_str(const uint64_t n, char str[18]);
-int u64_to_dec_str(const uint64_t n, char str[21]);
+int libk_u64_to_bin_str(const uint64_t n, char str[66]);
+int libk_u64_to_hex_str(const uint64_t n, char str[18]);
+int libk_u64_to_dec_str(const uint64_t n, char str[21]);
 
 #endif

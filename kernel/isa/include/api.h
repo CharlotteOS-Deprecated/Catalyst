@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef LLK_API_H
-#define LLK_API_H
+#ifndef ISA_API_H
+#define ISA_API_H
 
 #include <stdint.h>
 
@@ -27,20 +27,20 @@ Disables all maskable interrupts
 Preconditions: None
 Postconditions: All maskable interrupts are disabled on the calling logical processor
 */
-void inline llk_disable_interrupts(void);
+void inline isa_disable_interrupts(void);
 /*
 Enables all maskable interrupts
 Preconditions: None
 Postconditions: All maskable interrupts are enabled on the calling logical processor
 */
-void inline llk_enable_interrupts(void);
+void inline isa_enable_interrupts(void);
 /*
 Initializes a logical processor.
 Preconditions: None
 Postconditions: The processor will be initialized and ready to execute both kernel
 and userspace code
 */
-void llk_init_lp(void);
+void isa_init_lp(void);
 /*
 Halt (and catch fire)
 Preconditions: None
@@ -48,11 +48,11 @@ Postconditions: The logical processor is halted until a nonmaskable interrupt oc
 Note: This function never returns
 */
 [[noreturn]]
-void llk_hcf(void);
+void isa_hcf(void);
 
 /*Serial Port*/
-int32_t llk_init_serial(void);
-void llk_serial_putc(const char c);
+int32_t isa_init_serial(void);
+void isa_serial_putc(const char c);
 
 extern void interrupt_test(void);
 

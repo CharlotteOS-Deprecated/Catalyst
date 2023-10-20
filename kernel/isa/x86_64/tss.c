@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -16,17 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef STRING_H
-#define STRING_H
+#include "isa/x86_64/include/tss.h"
 
-#include <stdint.h>
-#include <stddef.h>
+#include "libk/include/string.h"
 
-extern void *memcpy(void *dest, const void *src, size_t n);
-extern void *memset(void *s, int c, size_t n);
-extern void *memmove(void *dest, const void *src, size_t n);
-extern int memcmp(const void *s1, const void *s2, size_t n);
+#define IOPB_END_BYTE 0xFF
 
 
+void setup_tss(tss_t tss, void *const rsp0)
+{
+        // Zero out the TSS
+        libk_memset(tss, 0, sizeof(uint32_t) * 26);
 
-#endif
+        // Set the value of the kernel stack
+        uint64_t rsp0_uint = (uint64_t) rsp0;
+
+        tss[1] = (uint32_t) (rsp0_uint & 0xFFFFFFFF);
+        tss[2] = (uint32_t) ((rsp0_uint & 0xFFFFFFFF00000000) >> 32);
+
+        // Set the offset of the IOPB
+        tss[26] = 101 << 16;
+        // Set the first byte of the IOPB to the end byte (all 1s) to signal that the IOPB will not be used
+        tss[27] = 0xFF;
+}

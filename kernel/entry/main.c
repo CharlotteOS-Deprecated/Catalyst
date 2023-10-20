@@ -20,18 +20,16 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-/*llk isa subsystem*/
-#include "llk/isa/include/api.h"
-#include "llk/isa/x86_64/include/cpu.h"
-#include "llk/isa/x86_64/include/exceptions.h"
-
-/*hlk logging subsystem*/
-#include "log/include/string.h"
-#include "log/include/type_conv.h"
+#include "isa/include/api.h"
+#include "isa/x86_64/include/cpu.h"
+#include "isa/x86_64/include/exceptions.h"
+#include "libk/include/type_conv.h"
+#include "libk/include/string.h"
 #include "log/include/log.h"
 
+
 static const char license_string[] = \
-	"Catalyst: A Standalone General Purpose OS Kernel\r\n\r\n"
+	"Catalyst: A General Purpose OS Kernel\r\n\r\n"
 	"Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)\r\n\r\n"
 
 	"This program is free software: you can redistribute it and/or modify\r\n"
@@ -51,21 +49,21 @@ static const char license_string[] = \
 void main(void)
 {
 	//initialize COM1
-	if (llk_init_serial()) {
-		llk_hcf();
+	if (isa_init_serial()) {
+		isa_hcf();
 	}
 	log_puts(license_string);
 	log_puts("\r\n");
 	log_puts("Initializing Catalyst\r\n");
 	log_puts("\r\n");
 
-	llk_init_lp();
+	isa_init_lp();
 	log_puts("Initialized BSP\r\n");
 
 	log_puts("Performing interrupt test\r\n");
 	interrupt();
-        log_puts("Returned from interrupt service routine\r\n");
+	log_puts("Returned from interrupt service routine\r\n");
 	// We're done, just hang...
-        log_puts("Halting\r\n");
-	llk_hcf();
+	log_puts("Halting\r\n");
+	isa_hcf();
 }

@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "include/serial.h"
-#include "include/cpu.h"
+#include "isa/x86_64/include/serial.h"
+#include "isa/x86_64/include/cpu.h"
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -52,7 +52,7 @@ int is_transmit_empty(void)
 {
 	return inb(PORT + 5) & 0x20;
 }
- 
+
 char serial_putc(char c)
 {
 	while (is_transmit_empty() == 0);

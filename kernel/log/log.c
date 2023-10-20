@@ -1,5 +1,5 @@
-/* 
-Catalyst: A Standalone General Purpose OS Kernel
+/*
+Catalyst: A General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
 This program is free software: you can redistribute it and/or modify
@@ -16,19 +16,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef GDT_H
-#define GDT_H
-
-#include <stdint.h>
 #include <stddef.h>
 
-#include "tss.h"
+#include "include/log.h"
 
-#define GDT_N_ELEMENTS 7
+#include "../isa/include/api.h"
 
-typedef uint64_t gdt_t[GDT_N_ELEMENTS];
+static void (*const log_putc)(const char) = &isa_serial_putc;
 
-void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0);
-void load_gdt(gdt_t gdt);
-
-#endif
+void log_puts(const char *const str)
+{
+	for (size_t i = 0; str[i] != '\0'; ++i) {
+		log_putc(str[i]);
+	}
+}

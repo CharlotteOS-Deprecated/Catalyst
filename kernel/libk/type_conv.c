@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -31,7 +31,7 @@ void swap_endianness(uint8_t *bytes, size_t nbytes)
 	}
 }
 
-int u64_to_bin_str(const uint64_t n, char str[66])
+int libk_u64_to_bin_str(const uint64_t n, char str[66])
 {
 	if (str == NULL)
 		return -1;
@@ -60,7 +60,7 @@ uint64_t pow(uint64_t base, uint64_t exponent)
 	return result;
 }
 
-int u64_to_hex_str(uint64_t n, char str[18]) {
+int libk_u64_to_hex_str(uint64_t n, char str[18]) {
 	if (str == NULL) {
 		return -1;
 	}
@@ -74,7 +74,7 @@ int u64_to_hex_str(uint64_t n, char str[18]) {
 
 	return 0;
 }
-int u64_to_dec_str(uint64_t n, char str[21]) {
+int libk_u64_to_dec_str(uint64_t n, char str[21]) {
 	if (str == NULL) {
 		return -1;
 	}

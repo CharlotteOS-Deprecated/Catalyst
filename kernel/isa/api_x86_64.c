@@ -18,17 +18,16 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #ifdef __x86_64__
 
-#include "include/api.h"
+#include "isa/include/api.h"
 
-#include "x86_64/include/cpu.h"
-#include "x86_64/include/gdt.h"
-#include "x86_64/include/idt.h"
-#include "x86_64/include/serial.h"
-#include "x86_64/include/tss.h"
-
-#include "hlk/log/include/log.h"
-#include "hlk/log/include/string.h"
-#include "hlk/log/include/type_conv.h"
+#include "isa/x86_64/include/cpu.h"
+#include "isa/x86_64/include/gdt.h"
+#include "isa/x86_64/include/idt.h"
+#include "isa/x86_64/include/serial.h"
+#include "isa/x86_64/include/tss.h"
+#include "libk/include/string.h"
+#include "libk/include/type_conv.h"
+#include "log/include/log.h"
 
 // Global Descriptor Table and Task State Segment
 static gdt_t gdt;
@@ -40,20 +39,20 @@ static idt_t idt;
 
 
 /*CPU*/
-void inline llk_disable_interrupts(void)
+void inline isa_disable_interrupts(void)
 {
         disable_interrupts();
 }
-void inline llk_enable_interrupts(void)
+void inline isa_enable_interrupts(void)
 {
         enable_interrupts();
 }
 [[noreturn]]
-void llk_hcf(void)
+void isa_hcf(void)
 {
         hcf();
 }
-void llk_init_lp(void)
+void isa_init_lp(void)
 {
         // setup and load the GDT and TSS
         setup_gdt(gdt, tss, &bsp_stack);
@@ -62,12 +61,12 @@ void llk_init_lp(void)
 }
 
 /*Serial Port*/
-int32_t llk_init_serial(void)
+int32_t isa_init_serial(void)
 {
         init_serial();
         return 0;
 }
-void llk_serial_putc(const char c)
+void isa_serial_putc(const char c)
 {
         serial_putc(c);
 }
