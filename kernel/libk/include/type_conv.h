@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef TYPE_CONV_H
-#define TYPE_CONV_H
+#ifndef LIBK_TYPE_CONV_H
+#define LIBK_TYPE_CONV_H
 
 #include <stdint.h>
 
