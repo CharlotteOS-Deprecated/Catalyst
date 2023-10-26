@@ -39,11 +39,11 @@ static idt_t idt;
 
 
 /*CPU*/
-void inline isa_disable_interrupts(void)
+inline void isa_disable_interrupts(void)
 {
         disable_interrupts();
 }
-void inline isa_enable_interrupts(void)
+inline void isa_enable_interrupts(void)
 {
         enable_interrupts();
 }

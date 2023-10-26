@@ -27,13 +27,13 @@ Disables all maskable interrupts
 Preconditions: None
 Postconditions: All maskable interrupts are disabled on the calling logical processor
 */
-void inline isa_disable_interrupts(void);
+inline void isa_disable_interrupts(void);
 /*
 Enables all maskable interrupts
 Preconditions: None
 Postconditions: All maskable interrupts are enabled on the calling logical processor
 */
-void inline isa_enable_interrupts(void);
+inline void isa_enable_interrupts(void);
 /*
 Initializes a logical processor.
 Preconditions: None

@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -19,6 +19,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef LOG_H
 #define LOG_H
 
-extern void log_puts(const char *str);
+void log_puts(const char *str);
+void log_putln(const char* const str);
 
 #endif

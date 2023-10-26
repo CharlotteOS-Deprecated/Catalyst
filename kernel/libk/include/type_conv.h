@@ -23,8 +23,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 static char temp_str[1024];
 
-int libk_u64_to_bin_str(const uint64_t n, char str[66]);
-int libk_u64_to_hex_str(const uint64_t n, char str[18]);
-int libk_u64_to_dec_str(const uint64_t n, char str[21]);
+const char *libk_u64_to_bin_str(const uint64_t n, char str[66]);
+const char *libk_u64_to_hex_str(const uint64_t n, char str[18]);
+const char *libk_u64_to_dec_str(const uint64_t n, char str[21]);
 
 #endif

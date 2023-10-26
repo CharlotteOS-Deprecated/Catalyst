@@ -20,13 +20,22 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "include/log.h"
 
-#include "../isa/include/api.h"
+#include "isa/include/api.h"
 
-static void (*const log_putc)(const char) = &isa_serial_putc;
+inline void log_putc(const char c)
+{
+	isa_serial_putc(c);
+}
 
 void log_puts(const char *const str)
 {
 	for (size_t i = 0; str[i] != '\0'; ++i) {
 		log_putc(str[i]);
 	}
+}
+
+void log_putln(const char* const str)
+{
+	log_puts(str);
+	log_puts("\r\n");
 }

@@ -20,6 +20,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
+#include "boot/include/requests.h"
 #include "isa/include/api.h"
 #include "isa/x86_64/include/cpu.h"
 #include "isa/x86_64/include/exceptions.h"
@@ -60,10 +61,14 @@ void main(void)
 	isa_init_lp();
 	log_puts("Initialized BSP\r\n");
 
-	log_puts("Performing interrupt test\r\n");
+	/* log_puts("Performing interrupt test\r\n");
 	interrupt();
-	log_puts("Returned from interrupt service routine\r\n");
+	log_puts("Returned from interrupt service routine\r\n"); */
+
+	log_puts("Memory Map Response Address: ");
+	log_putln(libk_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
+
 	// We're done, just hang...
-	log_puts("Halting\r\n");
+	log_putln("Halting");
 	isa_hcf();
 }
