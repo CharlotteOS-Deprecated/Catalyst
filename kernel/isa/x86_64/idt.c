@@ -22,8 +22,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "isa/x86_64/include/exceptions.h"
 #include "isa/x86_64/include/gdt.h"
 #include "isa/x86_64/include/tss.h"
-#include "libk/include/string.h"
-#include "libk/include/type_conv.h"
+#include "utility/include/string.h"
+#include "utility/include/type_conv.h"
 #include "log/include/log.h"
 
 
@@ -34,7 +34,7 @@ void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void), c
         uint64_t isr_addr = (uint64_t) offset;
 
         // clear the entire gate descriptor
-        libk_memset(target, 0, GATE_DESC_SZ);
+        utility_memset(target, 0, GATE_DESC_SZ);
 
         // offset[15:0] = target[15:0]
         target[0] |= (isr_addr & 0xFFFF);
@@ -55,7 +55,7 @@ void setup_idt(idt_t idt)
         char temp_str[1024];
 
         // Clear the IDT
-        libk_memset(idt, 0, IDT_N_ELEMENTS * GATE_DESC_SZ);
+        utility_memset(idt, 0, IDT_N_ELEMENTS * GATE_DESC_SZ);
 
         // install exception handlers at the appropriate interrupt vectors
         set_gate_descriptor(idt, 0, isr_divide_by_zero, 1 << 3, TRAP_GATE, true);
@@ -67,8 +67,8 @@ void setup_idt(idt_t idt)
 
         log_puts("Interrupt Descriptor Table\r\n");
         for (size_t i = 0; i < 512; i+=8) {
-                libk_memset(temp_str, '\0', 1024);
-                libk_u64_to_hex_str(*((uint64_t*) &idt[i]), temp_str);
+                utility_memset(temp_str, '\0', 1024);
+                utility_u64_to_hex_str(*((uint64_t*) &idt[i]), temp_str);
                 log_puts(temp_str);
                 log_puts("\r\n");
         }

@@ -3,8 +3,8 @@
 #include <stddef.h>
 
 #include "isa/x86_64/include/cpu.h"
-#include "libk/include/string.h"
-#include "libk/include/type_conv.h"
+#include "utility/include/string.h"
+#include "utility/include/type_conv.h"
 #include "log/include/log.h"
 
 /*
@@ -35,7 +35,7 @@ void ih_general_protection_fault(const uint64_t int_err_code)
         log_puts("A general protection fault has occurred\r\n");
         log_puts("Error Code: ");
         char temp_str[21];
-        libk_u64_to_dec_str(int_err_code, temp_str);
+        utility_u64_to_dec_str(int_err_code, temp_str);
         log_puts(temp_str);
         log_puts("\r\n");
 
@@ -55,15 +55,15 @@ void ih_page_fault(const uint64_t int_err_code)
         log_puts("A page fault has occurred\r\n");
         log_puts("Error Code: ");
         char temp_str[21];
-        libk_memset(temp_str, 0, 21);
-        libk_u64_to_hex_str(int_err_code, temp_str);
+        utility_memset(temp_str, 0, 21);
+        utility_u64_to_hex_str(int_err_code, temp_str);
         log_puts(temp_str);
         log_puts("\r\n");
         get_regs();
         log_puts("Registers:\r\n");
         for (size_t i = 0; i < 16; ++i) {
-                libk_memset(temp_str, 0, 21);
-                libk_u64_to_hex_str(g_cpu_regs[i], temp_str);
+                utility_memset(temp_str, 0, 21);
+                utility_u64_to_hex_str(g_cpu_regs[i], temp_str);
                 log_puts(temp_str);
                 log_puts("\r\n");
         }

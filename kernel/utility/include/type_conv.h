@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef LIBK_TYPE_CONV_H
-#define LIBK_TYPE_CONV_H
+#ifndef utility_TYPE_CONV_H
+#define utility_TYPE_CONV_H
 
 #include <stdint.h>
 
 static char temp_str[1024];
 
-const char *libk_u64_to_bin_str(const uint64_t n, char str[66]);
-const char *libk_u64_to_hex_str(const uint64_t n, char str[18]);
-const char *libk_u64_to_dec_str(const uint64_t n, char str[21]);
+const char *utility_u64_to_bin_str(const uint64_t n, char str[66]);
+const char *utility_u64_to_hex_str(const uint64_t n, char str[18]);
+const char *utility_u64_to_dec_str(const uint64_t n, char str[21]);
 
 #endif

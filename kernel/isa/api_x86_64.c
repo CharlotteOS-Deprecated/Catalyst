@@ -25,8 +25,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "isa/x86_64/include/idt.h"
 #include "isa/x86_64/include/serial.h"
 #include "isa/x86_64/include/tss.h"
-#include "libk/include/string.h"
-#include "libk/include/type_conv.h"
+#include "utility/include/string.h"
+#include "utility/include/type_conv.h"
 #include "log/include/log.h"
 
 // Global Descriptor Table and Task State Segment

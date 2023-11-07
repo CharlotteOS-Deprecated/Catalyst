@@ -24,8 +24,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "isa/include/api.h"
 #include "isa/x86_64/include/cpu.h"
 #include "isa/x86_64/include/exceptions.h"
-#include "libk/include/type_conv.h"
-#include "libk/include/string.h"
+#include "utility/include/type_conv.h"
+#include "utility/include/string.h"
 #include "log/include/log.h"
 
 
@@ -66,7 +66,7 @@ void main(void)
 	log_puts("Returned from interrupt service routine\r\n"); */
 
 	log_puts("Memory Map Response Address: ");
-	log_putln(libk_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
+	log_putln(utility_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
 
 	// We're done, just hang...
 	log_putln("Halting");

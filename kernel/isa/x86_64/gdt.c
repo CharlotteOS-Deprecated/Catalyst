@@ -23,8 +23,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "isa/x86_64/include/cpu.h"
 #include "isa/x86_64/include/tss.h"
-#include "libk/include/string.h"
-#include "libk/include/type_conv.h"
+#include "utility/include/string.h"
+#include "utility/include/type_conv.h"
 #include "log/include/log.h"
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
@@ -67,8 +67,8 @@ void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0)
 
         log_puts("Global Descriptor Table:\r\n");
         for (size_t i = 0; i < 7; ++i) {
-                libk_memset(temp_str, '\0', 1024);
-                libk_u64_to_hex_str(gdt[i], temp_str);
+                utility_memset(temp_str, '\0', 1024);
+                utility_u64_to_hex_str(gdt[i], temp_str);
                 log_puts(temp_str);
                 log_puts("\r\n");
         }

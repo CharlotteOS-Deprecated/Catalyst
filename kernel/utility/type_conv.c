@@ -31,7 +31,7 @@ void swap_endianness(uint8_t *bytes, size_t nbytes)
 	}
 }
 
-const char *libk_u64_to_bin_str(const uint64_t n, char str[66])
+const char *utility_u64_to_bin_str(const uint64_t n, char str[66])
 {
 	if(str) {
 		//convert
@@ -60,7 +60,7 @@ uint64_t pow(uint64_t base, uint64_t exponent)
 	return result;
 }
 
-const char *libk_u64_to_hex_str(uint64_t n, char str[18]) {
+const char *utility_u64_to_hex_str(uint64_t n, char str[18]) {
 	if(str) {
 
 		for (int i = 0; i < 16; i++) {
@@ -72,7 +72,7 @@ const char *libk_u64_to_hex_str(uint64_t n, char str[18]) {
 	}
 	return str;
 }
-const char *libk_u64_to_dec_str(uint64_t n, char str[21]) {
+const char *utility_u64_to_dec_str(uint64_t n, char str[21]) {
 	if (str) {
 
 		int i = 19; // Start from the end of the string

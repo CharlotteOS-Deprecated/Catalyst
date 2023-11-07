@@ -1,7 +1,7 @@
 # Nuke built-in rules and variables.
 override MAKEFLAGS += -rR
 
-override IMAGE_NAME := barebones
+override IMAGE_NAME := catalyst
 
 # Convenience macro to reliably declare user overridable variables.
 define DEFAULT_VAR =
@@ -91,7 +91,7 @@ kernel:
 $(IMAGE_NAME).iso: limine kernel
 	rm -rf iso_root
 	mkdir -p iso_root
-	cp kernel/kernel.elf limine.cfg limine_wallpaper.jpg iso_root/
+	cp kernel/catalyst.elf limine.cfg limine_wallpaper.jpg iso_root/
 	mkdir -p iso_root/EFI/BOOT
 ifeq ($(ARCH),x86_64)
 	cp -v limine/limine-bios.sys limine/limine-bios-cd.bin limine/limine-uefi-cd.bin iso_root/
@@ -134,7 +134,7 @@ endif
 	mkdir -p img_mount
 	sudo mount `cat loopback_dev`p1 img_mount
 	sudo mkdir -p img_mount/EFI/BOOT
-	sudo cp -v kernel/kernel.elf limine.cfg img_mount/
+	sudo cp -v kernel/catalyst.elf limine.cfg img_mount/
 ifeq ($(ARCH),x86_64)
 	sudo cp -v limine/limine-bios.sys img_mount/
 	sudo cp -v limine/BOOTX64.EFI img_mount/EFI/BOOT/

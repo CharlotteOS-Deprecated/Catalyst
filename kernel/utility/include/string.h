@@ -22,10 +22,10 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-#define libk_memcpy memcpy
-#define libk_memset memset
-#define libk_memmove memmove
-#define libk_memcmp memcmp
+#define utility_memcpy memcpy
+#define utility_memset memset
+#define utility_memmove memmove
+#define utility_memcmp memcmp
 
 /*DO NOT CHANGE THE NAMES OF THESE FUNCTIONS THEY ARE REQUIRED BY THE COMPILER!!!*/
 
