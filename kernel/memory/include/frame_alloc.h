@@ -6,14 +6,19 @@
 
 #include "limine.h"
 
-struct phys_mem_buf {
-        uint64_t base;
-        uint64_t n_frames;
+typedef uint64_t paddr_t;
+typedef void* vaddr_t;
+
+struct phys_mem_blk {
+        paddr_t base;
+        size_t n_frames;
+        bool is_allocated;
+        struct phys_mem_blk *next;
 };
 
-uint64_t init_frame_alloc(struct limine_memmap_entries **entries);
-const struct phys_mem_buf *get_available_phys_mem(void);
-uint8_t allocate_frames(struct phys_mem_buf *frame_list);
-uint8_t deallocate_frames(struct phsy_mem_buf *frame_list);
+void init_frame_alloc(struct limine_memmap_entry **entries);
+const struct phys_mem_blk *get_available_phys_mem(void);
+bool allocate_frames(const struct phys_mem_blk *const frame_list);
+void deallocate_frames(const struct phys_mem_blk *const frame_list);
 
 #endif
