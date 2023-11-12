@@ -1,5 +1,5 @@
 # Catalyst
-The kernel of the Singularity operating system
+Catalyst is the kernel of the Singularity operating system.
 
 ## Status
 
