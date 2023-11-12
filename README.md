@@ -1,5 +1,5 @@
 # Catalyst
-Catalyst is the kernel of the Singularity operating system. It is written in portable C23 and assembly language.
+Catalyst is the kernel of CharlotteOS. It is written in portable C23 and assembly language.
 
 ## Status
 
