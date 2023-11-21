@@ -16,6 +16,8 @@ struct phys_mem_blk {
         struct phys_mem_blk *next;
 };
 
+const size_t PAGE_SZ = 4096;
+
 void init_frame_alloc(struct limine_memmap_entry **entries);
 const struct phys_mem_blk *get_available_phys_mem(void);
 bool allocate_frames(const struct phys_mem_blk *const frame_list);
