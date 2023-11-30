@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "memory/include/types.h"
+#include "types.h"
 
 /***Virtual Memory Manager***/
 
