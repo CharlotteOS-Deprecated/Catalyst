@@ -6,7 +6,7 @@
 
 #include "limine.h"
 
-#include "memory/include/types.h"
+#include "types.h"
 
 struct phys_mem_blk {
         paddr_t base;
