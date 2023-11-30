@@ -27,13 +27,20 @@ void alloc_pmem_bmap(const struct limine_memmap_entry *const *const entries, con
         //Calculate the number of page frames to reserve for the physical memory bit map
         BMAP_NFRAMES = (bmap_sz / 4096);
         if (n_total_frames % PAGE_SZ > 0)
-                ++bmap_sz;
+                ++BMAP_NFRAMES;
         //find and reserve bmap_nframes page frames
         for(size_t i = 0; i < n_entries; ++i) {
                 if (entries[i]->type == LIMINE_MEMMAP_USABLE && entries[i]->length > bmap_sz) {
                         BMAP_PADDR = entries[i]->base;
+                        return;
                 }
         }
         //TODO: Handle the case where no simgle memmap entry has enough memory for the entire bitmap
+        //Find the largest entry then calculate how many additional frames are needed and find another entry that
 }
 
+/*Take the physical memory allocated for the physical memory bitmap and attach it to the kernel's virtual address space*/
+void attach_pmem_bmap()
+{
+
+}
