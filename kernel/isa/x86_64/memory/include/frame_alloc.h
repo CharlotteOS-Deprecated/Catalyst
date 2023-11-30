@@ -6,8 +6,7 @@
 
 #include "limine.h"
 
-typedef uint64_t paddr_t;
-typedef void* vaddr_t;
+#include "memory/include/types.h"
 
 struct phys_mem_blk {
         paddr_t base;

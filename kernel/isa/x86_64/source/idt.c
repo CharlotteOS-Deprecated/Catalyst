@@ -22,6 +22,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "isa/x86_64/include/exceptions.h"
 #include "isa/x86_64/include/gdt.h"
 #include "isa/x86_64/include/tss.h"
+#include "panic/include/api.h"
 #include "utility/include/string.h"
 #include "utility/include/type_conv.h"
 #include "log/include/log.h"
