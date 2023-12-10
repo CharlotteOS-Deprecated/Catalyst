@@ -17,15 +17,15 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
 
-#include "isa/x86_64/include/idt.h"
+#include "isa/x86_64/idt.h"
 
-#include "isa/x86_64/include/exceptions.h"
-#include "isa/x86_64/include/gdt.h"
-#include "isa/x86_64/include/tss.h"
-#include "panic/include/api.h"
-#include "utility/include/string.h"
-#include "utility/include/type_conv.h"
-#include "log/include/log.h"
+#include "isa/x86_64/exceptions.h"
+#include "isa/x86_64/gdt.h"
+#include "isa/x86_64/tss.h"
+#include "panic/api.h"
+#include "utility/string.h"
+#include "utility/type_conv.h"
+#include "log/log.h"
 
 
 void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void), const uint16_t segment_selector, const enum gate_type type, const bool is_present)

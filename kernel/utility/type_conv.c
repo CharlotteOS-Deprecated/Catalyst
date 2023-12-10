@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "include/type_conv.h"
-#include "include/string.h"
+#include "type_conv.h"
+#include "string.h"
 
 #include <stdint.h>
 

@@ -20,13 +20,13 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-#include "boot/include/requests.h"
-#include "isa/include/api.h"
-#include "isa/x86_64/include/cpu.h"
-#include "isa/x86_64/include/exceptions.h"
-#include "utility/include/type_conv.h"
-#include "utility/include/string.h"
-#include "log/include/log.h"
+#include "boot/requests.h"
+#include "isa/api.h"
+#include "isa/x86_64/cpu.h"
+#include "isa/x86_64/exceptions.h"
+#include "utility/type_conv.h"
+#include "utility/string.h"
+#include "log/log.h"
 
 
 static const char license_string[] = \

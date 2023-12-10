@@ -18,16 +18,16 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #ifdef __x86_64__
 
-#include "isa/include/api.h"
+#include "isa/api.h"
 
-#include "isa/x86_64/include/cpu.h"
-#include "isa/x86_64/include/gdt.h"
-#include "isa/x86_64/include/idt.h"
-#include "isa/x86_64/include/serial.h"
-#include "isa/x86_64/include/tss.h"
-#include "utility/include/string.h"
-#include "utility/include/type_conv.h"
-#include "log/include/log.h"
+#include "isa/x86_64/cpu.h"
+#include "isa/x86_64/gdt.h"
+#include "isa/x86_64/idt.h"
+#include "isa/x86_64/serial.h"
+#include "isa/x86_64/tss.h"
+#include "utility/string.h"
+#include "utility/type_conv.h"
+#include "log/log.h"
 
 // Global Descriptor Table and Task State Segment
 static gdt_t gdt;

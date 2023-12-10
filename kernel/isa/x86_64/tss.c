@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "isa/x86_64/include/tss.h"
+#include "isa/x86_64/tss.h"
 
-#include "utility/include/string.h"
+#include "utility/string.h"
 
 #define IOPB_END_BYTE 0xFF
 

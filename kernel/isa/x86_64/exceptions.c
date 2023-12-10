@@ -1,11 +1,11 @@
-#include "isa/x86_64/include/exceptions.h"
+#include "isa/x86_64/exceptions.h"
 
 #include <stddef.h>
 
-#include "isa/x86_64/include/cpu.h"
-#include "utility/include/string.h"
-#include "utility/include/type_conv.h"
-#include "log/include/log.h"
+#include "isa/x86_64/cpu.h"
+#include "utility/string.h"
+#include "utility/type_conv.h"
+#include "log/log.h"
 
 /*
 Raw Exception Handlers

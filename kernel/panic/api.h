@@ -1,8 +1,8 @@
 #ifndef PANIC_API_H
 #define PANIC_API_H
 
-#include "isa/include/api.h"
-#include "log/include/log.h"
+#include "isa/api.h"
+#include "log/log.h"
 
 
 [[noreturn]]
@@ -13,7 +13,7 @@ inline void panic()
 }
 
 
-void assert([[maybe_unused]] const bool expr)
+inline void assert([[maybe_unused]] const bool expr)
 {
 #ifdef ASSERT
         if (expr == false)
@@ -21,7 +21,7 @@ void assert([[maybe_unused]] const bool expr)
 #endif
 }
 
-void assert_not_null([[maybe_unused]] const void *const ptr)
+inline void assert_not_null([[maybe_unused]] const void *const ptr)
 {
 #ifdef ASSERT
         if (ptr == nullptr)

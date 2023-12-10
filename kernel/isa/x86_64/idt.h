@@ -22,7 +22,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-#include "panic/include/api.h"
+#include "panic/api.h"
 
 #define IDT_N_ELEMENTS 256
 // gate descriptor size in bytes
