@@ -18,9 +18,9 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include <stddef.h>
 
-#include "include/log.h"
+#include "log.h"
 
-#include "isa/include/api.h"
+#include "isa/api.h"
 
 inline void log_putc(const char c)
 {

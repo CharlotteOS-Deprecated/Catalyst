@@ -22,9 +22,8 @@ $(eval $(call DEFAULT_VAR,ARCH,$(DEFAULT_ARCH)))
 # It is highly recommended to use a custom built cross toolchain to build a kernel.
 # We are only using "cc" as a placeholder here. It may work by using
 # the host system's toolchain, but this is not guaranteed.
-override DEFAULT_CC := cc
-$(eval $(call DEFAULT_VAR,CC,clang))
-
+override DEFAULT_CC := clang-17
+$(eval $(call DEFAULT_VAR,CC,$(DEFAULT_CC)))
 override CC_IS_CLANG := no
 ifeq ($(shell $(CC) --version 2>&1 | grep -i 'clang' >/dev/null 2>&1 && echo 1),1)
     override CC_IS_CLANG := yes

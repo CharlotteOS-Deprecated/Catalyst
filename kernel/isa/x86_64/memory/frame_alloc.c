@@ -1,4 +1,4 @@
-#include "../include/frame_alloc.h"
+#include "frame_alloc.h"
 #include "limine.h"
 
 #include <stddef.h>

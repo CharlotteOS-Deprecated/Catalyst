@@ -17,7 +17,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
 
-#include "include/string.h"
+#include "string.h"
 
 // GCC and Clang reserve the right to generate calls to the following
 // 4 functions even if they are not directly called.

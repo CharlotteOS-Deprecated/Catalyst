@@ -19,13 +19,13 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-#include "isa/x86_64/include/gdt.h"
+#include "isa/x86_64/gdt.h"
 
-#include "isa/x86_64/include/cpu.h"
-#include "isa/x86_64/include/tss.h"
-#include "utility/include/string.h"
-#include "utility/include/type_conv.h"
-#include "log/include/log.h"
+#include "isa/x86_64/cpu.h"
+#include "isa/x86_64/tss.h"
+#include "utility/string.h"
+#include "utility/type_conv.h"
+#include "log/log.h"
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base, const uint32_t limit, const uint8_t access_byte, const uint8_t flags)
 {
