@@ -21,7 +21,7 @@ Catalyst is in the early stages of initial development, initially targeting the 
 ## Hardware Support
 
 - x86-64 implementation in progress
-- Aarch64 and RV64GC planned
+- Aarch64 support planned
 - UEFI and ACPI are required
 
 ## Building
