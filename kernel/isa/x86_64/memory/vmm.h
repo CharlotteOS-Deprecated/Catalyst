@@ -21,5 +21,4 @@ int32_t vmm_detach_frame(paddr_t *const frame_addr, vaddr_t page_addr);
 
 /*Get the physical address of the active page map from the CR3 register*/
 extern paddr_t asm_get_active_pgmap_paddr(void);
-
 #endif
