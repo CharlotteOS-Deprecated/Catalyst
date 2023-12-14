@@ -23,6 +23,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "boot/requests.h"
 #include "isa/api.h"
 #include "isa/x86_64/cpu.h"
+#include "isa/x86_64/cpuid/cpuid.h"
 #include "isa/x86_64/exceptions.h"
 #include "utility/type_conv.h"
 #include "utility/string.h"
@@ -45,7 +46,6 @@ static const char license_string[] = \
 
         "You should have received a copy of the GNU General Public License\r\n"
         "along with this program. If not, see https://www.gnu.org/licenses/\r\n\r\n";
-
 //kernel entry point
 void main(void)
 {
@@ -67,6 +67,11 @@ void main(void)
 
         log_puts("Memory Map Response Address: ");
         log_putln(utility_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
+
+        log_putln("Obtaining CPU information...");
+        enum cpuid_err id_err = get_cpuid_info(&cpuinfo);
+        log_puts("Obtaining CPU information complete with status: ");
+        log_putln(utility_u64_to_dec_str(id_err, temp_str));
 
         // We're done, just hang...
         log_putln("Halting");
