@@ -47,12 +47,13 @@ static const char license_string[] = \
         "You should have received a copy of the GNU General Public License\r\n"
         "along with this program. If not, see https://www.gnu.org/licenses/\r\n\r\n";
 //kernel entry point
-void main(void)
+extern void main(void)
 {
         //initialize COM1
         if (isa_init_serial()) {
                 isa_hcf();
         }
+        log_init();
         log_puts(license_string);
         log_puts("\r\n");
         log_puts("Initializing Catalyst\r\n");
@@ -69,9 +70,27 @@ void main(void)
         log_putln(utility_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
 
         log_putln("Obtaining CPU information...");
-        enum cpuid_err id_err = get_cpuid_info(&cpuinfo);
+        enum cpuid_status id_err = get_cpuid_info(&cpuinfo);
         log_puts("Obtaining CPU information complete with status: ");
-        log_putln(utility_u64_to_dec_str(id_err, temp_str));
+        switch (id_err) {
+        case CPUID_NOT_SUPPORTED:
+                log_putln("CPUID_NOT_SUPPORTED");
+                break;
+        case INVALID_DEST:
+                log_putln("INVALID_DEST");
+                break;
+        case SUCCESS:
+                log_putln("SUCCESS");
+                log_puts("CPU vendor ID: ");
+                log_putln(cpuinfo.vendor_id);
+                log_puts("Max supported EAX value for CPUID instruction: ");
+                log_putln(utility_u64_to_dec_str(cpuinfo.max_cpuid_eax, temp_str));
+                log_puts("Number of significant physical address bits: ");
+                log_putln(utility_u64_to_dec_str(cpuinfo.paddr_bits, temp_str));
+                log_puts("Number of significant virtual address bits: ");
+                log_putln(utility_u64_to_dec_str(cpuinfo.vaddr_bits, temp_str));
+                break;
+        }
 
         // We're done, just hang...
         log_putln("Halting");

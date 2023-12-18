@@ -26,6 +26,9 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #define utility_memset memset
 #define utility_memmove memmove
 #define utility_memcmp memcmp
+#define utility_strlen strlen
+
+size_t strlen(const char *str);
 
 /*DO NOT CHANGE THE NAMES OF THESE FUNCTIONS THEY ARE REQUIRED BY THE COMPILER!!!*/
 

@@ -4,11 +4,12 @@
 
 struct cpuid_info {
         char vendor_id[13];
+        uint32_t max_cpuid_eax;
         uint8_t paddr_bits;
         uint8_t vaddr_bits;
 };
 
-enum cpuid_err {
+enum cpuid_status {
         SUCCESS = 0,
         CPUID_NOT_SUPPORTED = 1,
         INVALID_DEST = 2
@@ -16,4 +17,4 @@ enum cpuid_err {
 
 static struct cpuid_info cpuinfo;
 
-enum cpuid_err get_cpuid_info(struct cpuid_info *const dest);
+enum cpuid_status get_cpuid_info(struct cpuid_info *const dest);
