@@ -18,6 +18,17 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 
 #include "string.h"
+#include <stddef.h>
+
+size_t strlen(const char *str)
+{
+	size_t len = 0;
+	while(*str != '\0') {
+		++len;
+		++str;
+	}
+	return len;
+}
 
 // GCC and Clang reserve the right to generate calls to the following
 // 4 functions even if they are not directly called.

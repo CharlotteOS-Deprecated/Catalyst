@@ -15,3 +15,26 @@ asm_is_cpuid_available:
         shr rax, 21
         popfq;restore the saved flags
         ret
+
+global asm_get_cpu_vendor_id
+asm_get_cpu_vendor_id:
+        mov eax, 0x80000000
+        cpuid
+        mov [rdi], ebx
+        mov [rdi + 4], edx
+        mov [rdi + 8], ecx
+        ret
+global asm_get_max_cpuid_eax
+asm_get_max_cpuid_eax:
+        mov eax, 0x80000000
+        cpuid
+        mov [rdi], eax
+        ret
+
+global asm_get_cpu_addr_nbits
+asm_get_cpu_addr_nbits:
+        mov eax, 0x80000008
+        cpuid
+        mov [rdi], al
+        mov [rsi], ah
+        ret

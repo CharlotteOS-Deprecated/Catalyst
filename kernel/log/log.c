@@ -18,9 +18,28 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include <stddef.h>
 
+#include "limine.h"
 #include "log.h"
 
 #include "isa/api.h"
+
+#include <flanterm/flanterm.h>
+#include <flanterm/backends/fb.h>
+
+#include "boot/requests.h"
+
+#include "utility/string.h"
+
+static struct flanterm_context *ft_ctx = nullptr;
+
+void log_init(void)
+{
+        /*Initialize the flanterm context*/
+        if(fb_request.response) {
+                struct limine_framebuffer *first_fb = fb_request.response->framebuffers[0];
+                ft_ctx = flanterm_fb_simple_init(first_fb->address, first_fb->width, first_fb->height, first_fb->pitch);
+        }
+}
 
 inline void log_putc(const char c)
 {
@@ -32,6 +51,7 @@ void log_puts(const char *const str)
 	for (size_t i = 0; str[i] != '\0'; ++i) {
 		log_putc(str[i]);
 	}
+        flanterm_write(ft_ctx, str, utility_strlen(str));
 }
 
 void log_putln(const char* const str)
