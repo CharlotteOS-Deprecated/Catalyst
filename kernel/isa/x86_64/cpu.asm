@@ -67,9 +67,9 @@ get_regs:
         ret
 global get_int_error_code
 get_int_error_code:
-        pop rbx
+        pop r10
         pop rax
-        push rbx
+        push r10
         ret
 
 global hcf
