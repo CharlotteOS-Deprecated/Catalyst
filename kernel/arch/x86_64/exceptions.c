@@ -45,7 +45,7 @@ void ih_general_protection_fault(const uint64_t int_err_code)
         log_puts("\r\n");
 
         panic();
-        // TODO: Handle actual cases the can cause GP exceptions
+        // TODO: Handle actual cases that can cause GP exceptions
 }
 
 void ih_double_fault(const uint64_t int_err_code)
