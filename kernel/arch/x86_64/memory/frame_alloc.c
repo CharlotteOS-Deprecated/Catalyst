@@ -41,6 +41,6 @@ enum pmem_status mem_alloc_pmem_bmap(const struct limine_memmap_entry *const *co
                 }
         }
         //TODO: Handle the case where no single memmap entry has enough memory for the entire bitmap
-        //Find the largest entry then calculate how many additional frames are needed and find another entry that
+        //Find the largest entry then calculate how many additional frames are needed and find another entry that makes up the difference
         return SUCCESS;
 }
