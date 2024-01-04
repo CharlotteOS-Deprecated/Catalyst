@@ -3,7 +3,7 @@ Catalyst is the kernel of CharlotteOS. It is written in portable C23 and assembl
 
 ## Status
 
-Catalyst is in the early stages of initial development, initially targeting the x86-64 based PC and server platforms.
+Catalyst is in the early stages of development initially targeting x86-64 based PC, server, and embedded hardware platforms.
 
 ## Design
 
