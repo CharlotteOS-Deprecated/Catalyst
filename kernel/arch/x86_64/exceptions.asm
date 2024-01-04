@@ -67,5 +67,5 @@ isr_page_fault:
 
 global interrupt
 interrupt:
-        int 14
+        int 0
         ret

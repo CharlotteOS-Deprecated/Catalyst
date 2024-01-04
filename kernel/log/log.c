@@ -21,7 +21,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "limine.h"
 #include "log.h"
 
-#include "isa/api.h"
+#include "arch/api.h"
 
 #include <flanterm/flanterm.h>
 #include <flanterm/backends/fb.h>

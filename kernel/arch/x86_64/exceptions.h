@@ -16,19 +16,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef GDT_H
-#define GDT_H
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 
 #include <stdint.h>
-#include <stddef.h>
 
-#include "isa/x86_64/tss.h"
+/*Wrapped Exception Handlers for use in the IDT*/
+extern void isr_divide_by_zero(void);
+extern void isr_overflow(void);
+extern void isr_invalid_opcode(void);
+extern void isr_double_fault(void);
+extern void isr_general_protection_fault(void);
+extern void isr_page_fault(void);
 
-#define GDT_N_ELEMENTS 7
-
-typedef uint64_t gdt_t[GDT_N_ELEMENTS];
-
-void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0);
-void load_gdt(gdt_t gdt);
+// For testing do not use in releases!!!
+extern void interrupt(void);
 
 #endif

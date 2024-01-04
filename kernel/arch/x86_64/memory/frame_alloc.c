@@ -11,8 +11,13 @@ typedef void* vaddr_t;
 static uint64_t BMAP_NFRAMES = 0;
 static uint64_t BMAP_PADDR = 0;
 
-void alloc_pmem_bmap(const struct limine_memmap_entry *const *const entries, const size_t n_entries)
+enum pmem_status mem_alloc_pmem_bmap(const struct limine_memmap_entry *const *const entries, const size_t n_entries)
 {
+        if(entries == nullptr)
+                return INVALID_ARGUMENT;
+        if(n_entries == 0ull)
+                return ARR_LEN_ERROR;
+
         size_t n_total_frames = 0;
 
         for(size_t i = 0; i < n_entries; ++i) {
@@ -32,15 +37,10 @@ void alloc_pmem_bmap(const struct limine_memmap_entry *const *const entries, con
         for(size_t i = 0; i < n_entries; ++i) {
                 if (entries[i]->type == LIMINE_MEMMAP_USABLE && entries[i]->length > bmap_sz) {
                         BMAP_PADDR = entries[i]->base;
-                        return;
+                        break;
                 }
         }
-        //TODO: Handle the case where no simgle memmap entry has enough memory for the entire bitmap
+        //TODO: Handle the case where no single memmap entry has enough memory for the entire bitmap
         //Find the largest entry then calculate how many additional frames are needed and find another entry that
-}
-
-/*Take the physical memory allocated for the physical memory bitmap and attach it to the kernel's virtual address space*/
-void attach_pmem_bmap()
-{
-
+        return SUCCESS;
 }

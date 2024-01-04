@@ -1,12 +1,11 @@
 #ifndef PANIC_API_H
 #define PANIC_API_H
 
-#include "isa/api.h"
+#include "arch/api.h"
 #include "log/log.h"
 
 
-[[noreturn]]
-inline void panic()
+inline void panic(void)
 {
         log_puts("A kernel panic has occurred!!!");
         isa_hcf();

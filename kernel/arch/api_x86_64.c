@@ -18,24 +18,24 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #ifdef __x86_64__
 
-#include "isa/api.h"
+#include "arch/api.h"
 
-#include "isa/x86_64/cpu.h"
-#include "isa/x86_64/gdt.h"
-#include "isa/x86_64/idt.h"
-#include "isa/x86_64/serial.h"
-#include "isa/x86_64/tss.h"
+#include "arch/x86_64/cpu.h"
+#include "arch/x86_64/gdt.h"
+#include "arch/x86_64/idt.h"
+#include "arch/x86_64/serial.h"
+#include "arch/x86_64/tss.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"
 #include "log/log.h"
 
 // Global Descriptor Table and Task State Segment
-static gdt_t gdt;
-static tss_t tss;
-static uint8_t bsp_stack[4096];
+static gdt_t BSP_GDT;
+static tss_t BSP_TSS;
+static uint8_t BSP_STACK[4096];
 
 // Interrupt Descriptor Table
-static idt_t idt;
+static idt_t BSP_IDT;
 
 
 /*CPU*/
@@ -52,12 +52,12 @@ void isa_hcf(void)
 {
         hcf();
 }
-void isa_init_lp(void)
+void isa_init_bsp(void)
 {
         // setup and load the GDT and TSS
-        setup_gdt(gdt, tss, &bsp_stack);
+        setup_gdt(BSP_GDT, BSP_TSS, BSP_STACK);
         // setup the IDT with execption handlers and load it
-        setup_idt(idt);
+        setup_idt(BSP_IDT);
 }
 
 /*Serial Port*/

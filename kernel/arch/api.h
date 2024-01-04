@@ -40,7 +40,7 @@ Preconditions: None
 Postconditions: The processor will be initialized and ready to execute both kernel
 and userspace code
 */
-void isa_init_lp(void);
+void isa_init_bsp(void);
 /*
 Halt (and catch fire)
 Preconditions: None
