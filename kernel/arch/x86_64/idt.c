@@ -17,11 +17,11 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
 
-#include "isa/x86_64/idt.h"
+#include "arch/x86_64/idt.h"
 
-#include "isa/x86_64/exceptions.h"
-#include "isa/x86_64/gdt.h"
-#include "isa/x86_64/tss.h"
+#include "arch/x86_64/exceptions.h"
+#include "arch/x86_64/gdt.h"
+#include "arch/x86_64/tss.h"
 #include "panic/api.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"

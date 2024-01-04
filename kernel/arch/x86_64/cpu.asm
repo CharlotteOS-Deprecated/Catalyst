@@ -19,7 +19,7 @@ bits 64
 section .bss
 global g_cpu_regs
 g_cpu_regs:
-        dq 16 dup (?)
+        resq 16 ;unitialized array of 16 qwords to store the integer registers
 
 section .text
 

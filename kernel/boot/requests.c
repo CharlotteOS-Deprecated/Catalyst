@@ -16,3 +16,10 @@ struct limine_framebuffer_request fb_request = {
         .revision = 0,
         .response = nullptr
 };
+
+[[maybe_unused]]
+struct limine_hhdm_request hhdm_request = {
+        .id = LIMINE_HHDM_REQUEST,
+        .revision = 0,
+        .response = nullptr
+};

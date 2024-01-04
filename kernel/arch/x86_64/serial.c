@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "isa/x86_64/serial.h"
-#include "isa/x86_64/cpu.h"
+#include "arch/x86_64/serial.h"
+#include "arch/x86_64/cpu.h"
 
 #include <stdint.h>
 #include <stdbool.h>

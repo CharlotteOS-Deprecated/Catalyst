@@ -1,11 +1,16 @@
-#include "isa/x86_64/exceptions.h"
+#include "arch/x86_64/exceptions.h"
 
+//freestanding
 #include <stddef.h>
 
-#include "isa/x86_64/cpu.h"
+//in-module
+#include "cpu.h"
+
+//out-of-module
+#include "log/log.h"
+#include "panic/api.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"
-#include "log/log.h"
 
 /*
 Raw Exception Handlers
@@ -16,7 +21,7 @@ These have no forward declarations because they are only ever called from assemb
 void ih_divide_by_zero(void)
 {
         log_puts("A divide by zero exception has occurred in kernelspace!\r\nPanicking!\r\n");
-        hcf();
+        panic();
 }
 
 void ih_overflow(void)
@@ -27,7 +32,7 @@ void ih_overflow(void)
 void ih_invalid_opcode(void)
 {
         log_puts("An invalid opcode exception occurred!\r\n");
-        hcf();
+        panic();
 }
 
 void ih_general_protection_fault(const uint64_t int_err_code)
@@ -39,7 +44,7 @@ void ih_general_protection_fault(const uint64_t int_err_code)
         log_puts(temp_str);
         log_puts("\r\n");
 
-        hcf();
+        panic();
         // TODO: Handle actual cases the can cause GP exceptions
 }
 
@@ -47,7 +52,7 @@ void ih_double_fault(const uint64_t int_err_code)
 {
         (void) int_err_code; //This value is always 0 and so not needed
         log_puts("A double fault has ocurred!\r\nPanicking!\r\n");
-        hcf();
+        panic();
 }
 
 void ih_page_fault(const uint64_t int_err_code)
@@ -67,5 +72,5 @@ void ih_page_fault(const uint64_t int_err_code)
                 log_puts(temp_str);
                 log_puts("\r\n");
         }
-        hcf();
+        panic();
 }

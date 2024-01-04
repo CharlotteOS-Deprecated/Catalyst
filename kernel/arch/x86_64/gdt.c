@@ -19,10 +19,10 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stdint.h>
 #include <stddef.h>
 
-#include "isa/x86_64/gdt.h"
+#include "arch/x86_64/gdt.h"
 
-#include "isa/x86_64/cpu.h"
-#include "isa/x86_64/tss.h"
+#include "arch/x86_64/cpu.h"
+#include "arch/x86_64/tss.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"
 #include "log/log.h"

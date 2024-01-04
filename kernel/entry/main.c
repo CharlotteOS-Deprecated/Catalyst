@@ -21,10 +21,10 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stddef.h>
 
 #include "boot/requests.h"
-#include "isa/api.h"
-#include "isa/x86_64/cpu.h"
-#include "isa/x86_64/cpuid/cpuid.h"
-#include "isa/x86_64/exceptions.h"
+#include "arch/api.h"
+#include "arch/x86_64/cpu.h"
+#include "arch/x86_64/cpuid/cpuid.h"
+#include "arch/x86_64/exceptions.h"
 #include "utility/type_conv.h"
 #include "utility/string.h"
 #include "log/log.h"
@@ -54,17 +54,18 @@ extern void main(void)
                 isa_hcf();
         }
         log_init();
+
         log_puts(license_string);
         log_puts("\r\n");
         log_puts("Initializing Catalyst\r\n");
         log_puts("\r\n");
 
-        isa_init_lp();
+        isa_init_bsp();
         log_puts("Initialized BSP\r\n");
 
-        /* log_puts("Performing interrupt test\r\n");
-        interrupt();
-        log_puts("Returned from interrupt service routine\r\n"); */
+        //log_puts("Performing interrupt test\r\n");
+        //interrupt();
+        //log_puts("Returned from interrupt service routine\r\n");
 
         log_puts("Memory Map Response Address: ");
         log_putln(utility_u64_to_hex_str((uint64_t) memory_map_request.response, temp_str));
@@ -90,6 +91,14 @@ extern void main(void)
                 log_puts("Number of significant virtual address bits: ");
                 log_putln(utility_u64_to_dec_str(cpuinfo.vaddr_bits, temp_str));
                 break;
+        }
+
+        log_putln("Checking Limine HHDM request for response");
+        if(hhdm_request.response == nullptr) {
+                log_putln("Higher Half Direct Map not available");
+        } else {
+                log_puts("Higher Half Direct Map available at virtual address ");
+                log_putln(utility_u64_to_hex_str(hhdm_request.response->offset, temp_str));
         }
 
         // We're done, just hang...
