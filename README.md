@@ -1,9 +1,11 @@
 # Catalyst
-Catalyst is the kernel of CharlotteOS. It is written in portable C23 and assembly language.
+Catalyst was going to be the kernel of CharlotteOS. It is written in portable C23 and assembly language.
 
 ## Status
 
-Catalyst is in the early stages of development initially targeting x86-64 based PC, server, and embedded hardware platforms.
+Catalyst has been fully superceded as the kernel of CharlotteOS by Charlotte Core which has been written from the ground up in Rust and Assembly language. 
+
+This repository exists solely for record keeping purposes at this point.
 
 ## Design
 
