@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -19,8 +19,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef TSS_H
 #define TSS_H
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #define TSS_N_ELEMENTS 27
 

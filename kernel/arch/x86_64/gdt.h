@@ -19,8 +19,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef GDT_H
 #define GDT_H
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #include "arch/x86_64/tss.h"
 

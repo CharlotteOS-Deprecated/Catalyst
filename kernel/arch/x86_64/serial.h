@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -21,7 +21,6 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include <stddef.h>
 #include <stdint.h>
-
 
 int init_serial(void);
 char serial_putc(char c);

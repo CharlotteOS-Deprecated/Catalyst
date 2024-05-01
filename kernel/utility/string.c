@@ -1,4 +1,4 @@
-/* 
+/*
 Catalyst: A Standalone General Purpose OS Kernel
 Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)
 
@@ -16,14 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-
 #include "string.h"
 #include <stddef.h>
 
 size_t strlen(const char *str)
 {
 	size_t len = 0;
-	while(*str != '\0') {
+	while (*str != '\0') {
 		++len;
 		++str;
 	}
@@ -65,13 +64,12 @@ extern void *memmove(void *dest, const void *src, size_t n)
 	const uint8_t *psrc = (const uint8_t *)src;
 
 	if (src > dest) {
-		for (size_t i = 0; i < n; i++)
-		{
+		for (size_t i = 0; i < n; i++) {
 			pdest[i] = psrc[i];
 		}
 	} else if (src < dest) {
 		for (size_t i = n; i > 0; i--) {
-			pdest[i-1] = psrc[i-1];
+			pdest[i - 1] = psrc[i - 1];
 		}
 	}
 

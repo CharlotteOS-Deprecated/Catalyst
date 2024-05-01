@@ -21,6 +21,6 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 void log_init(void);
 void log_puts(const char *str);
-void log_putln(const char* const str);
+void log_putln(const char *const str);
 
 #endif

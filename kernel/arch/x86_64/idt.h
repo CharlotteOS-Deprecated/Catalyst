@@ -19,8 +19,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef IDT_H
 #define IDT_H
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #include "panic/api.h"
 
@@ -31,36 +31,39 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 typedef uint8_t idt_desc_t[80];
 typedef uint8_t idt_t[IDT_N_ELEMENTS * GATE_DESC_SZ];
-enum gate_type {
-        INTERRUPT_GATE = 0xE,
-        TRAP_GATE = 0xF
-};
+enum gate_type { INTERRUPT_GATE = 0xE, TRAP_GATE = 0xF };
 
 inline bool is_gate_descriptor_present(const idt_t idt, const uint8_t index)
 {
-        assert_not_null(idt);
+	assert_not_null(idt);
 
-        return *((uint64_t*) (&idt[index * GATE_DESC_SZ])) & (((uint64_t) 1) << GATE_DESC_PRESENT_BIT) ? true : false;
+	return *((uint64_t *)(&idt[index * GATE_DESC_SZ])) &
+		       (((uint64_t)1) << GATE_DESC_PRESENT_BIT)
+		   ? true
+		   : false;
 }
 inline void set_gate_descriptor_present_bit(idt_t idt, const uint8_t index, const bool present_val)
 {
-        assert(idt != nullptr);
+	assert(idt != nullptr);
 
-        if (is_gate_descriptor_present(idt, index) != present_val) {
-                *((uint64_t*) (&idt[index * GATE_DESC_SZ])) ^= (((uint64_t) (present_val ? 1 : 0)) << GATE_DESC_PRESENT_BIT);
-        }
+	if (is_gate_descriptor_present(idt, index) != present_val) {
+		*((uint64_t *)(&idt[index * GATE_DESC_SZ])) ^=
+		    (((uint64_t)(present_val ? 1 : 0)) << GATE_DESC_PRESENT_BIT);
+	}
 }
-void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void), const uint16_t segment_selector, const enum gate_type type, const bool is_present);
+void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void),
+			 const uint16_t segment_selector, const enum gate_type type,
+			 const bool is_present);
 inline void make_idt_desc(idt_desc_t dest, const idt_t idt)
 {
-        assert_not_null(dest);
-        assert_not_null(idt);
+	assert_not_null(dest);
+	assert_not_null(idt);
 
-        uint16_t *const sz_ptr = (uint16_t *const) dest;
-        *sz_ptr = IDT_N_ELEMENTS * GATE_DESC_SZ - 1;
+	uint16_t *const sz_ptr = (uint16_t *const)dest;
+	*sz_ptr = IDT_N_ELEMENTS * GATE_DESC_SZ - 1;
 
-        uint64_t *const offset_ptr = (uint64_t *const) &dest[2];
-        *offset_ptr = (uint64_t) idt;
+	uint64_t *const offset_ptr = (uint64_t *const)&dest[2];
+	*offset_ptr = (uint64_t)idt;
 }
 extern void load_idt(idt_desc_t desc);
 

@@ -14,7 +14,7 @@ define DEFAULT_VAR =
 endef
 
 # Compiler for building the 'limine' executable for the host.
-override DEFAULT_HOST_CC := clang-17
+override DEFAULT_HOST_CC := clang
 $(eval $(call DEFAULT_VAR,HOST_CC,$(DEFAULT_HOST_CC)))
 
 # Target architecture to build for. Default to x86_64.

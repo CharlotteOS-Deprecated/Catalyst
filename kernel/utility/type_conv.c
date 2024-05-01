@@ -33,8 +33,8 @@ void swap_endianness(uint8_t *bytes, size_t nbytes)
 
 const char *utility_u64_to_bin_str(const uint64_t n, char str[66])
 {
-	if(str) {
-		//convert
+	if (str) {
+		// convert
 		for (uint64_t i = 0; i < 64; ++i) {
 			if ((n & (1ull << i)) != 0) {
 				str[63 - i] = '1';
@@ -42,10 +42,10 @@ const char *utility_u64_to_bin_str(const uint64_t n, char str[66])
 				str[63 - i] = '0';
 			}
 		}
-		//Put down the suffix and terminating null character
+		// Put down the suffix and terminating null character
 		memcpy(&str[64ull], "b", 2ull);
 	}
-	//return pointer to result
+	// return pointer to result
 	return str;
 }
 
@@ -54,17 +54,18 @@ static const char digit_array[] = "0123456789ABCDEF";
 uint64_t pow(uint64_t base, uint64_t exponent)
 {
 	uint64_t result = 1;
-	for(size_t i = 0; i < exponent; ++i) {
+	for (size_t i = 0; i < exponent; ++i) {
 		result *= base;
 	}
 	return result;
 }
 
-const char *utility_u64_to_hex_str(uint64_t n, char str[18]) {
-	if(str) {
+const char *utility_u64_to_hex_str(uint64_t n, char str[18])
+{
+	if (str) {
 
 		for (int i = 0; i < 16; i++) {
-			uint64_t digit = (n >> (60 - 4 * i)) & 0xF;  // Extract each hex digit
+			uint64_t digit = (n >> (60 - 4 * i)) & 0xF; // Extract each hex digit
 			str[i] = digit_array[digit];
 		}
 
@@ -72,18 +73,19 @@ const char *utility_u64_to_hex_str(uint64_t n, char str[18]) {
 	}
 	return str;
 }
-const char *utility_u64_to_dec_str(uint64_t n, char str[21]) {
+const char *utility_u64_to_dec_str(uint64_t n, char str[21])
+{
 	if (str) {
 
 		int i = 19; // Start from the end of the string
 		do {
 			str[i--] = digit_array[n % 10]; // Get the last digit
-			n /= 10; // Remove the last digit
-		} while(n != 0);
+			n /= 10;			// Remove the last digit
+		} while (n != 0);
 
 		// Shift all characters down to the start of the string
-			int start = i + 1;
-		for(int j = 0; j < 20 - start; j++) {
+		int start = i + 1;
+		for (int j = 0; j < 20 - start; j++) {
 			str[j] = str[j + start];
 		}
 
