@@ -1,24 +1,9 @@
 # Catalyst
-Catalyst was going to be the kernel of CharlotteOS. It is written in portable C23 and assembly language.
+Catalyst is the kernel of CharlotteOS. It is written in portable C23 and assembly language.
 
 ## Status
 
-Catalyst has been fully superceded as the kernel of CharlotteOS by Charlotte Core which has been written from the ground up in Rust and Assembly language. 
-
-This repository exists solely for record keeping purposes at this point.
-
-## Design
-
-- **Hybrid Kernel**:
-  - A relatively stable kernel that is extensible via userspace kernel servers
-  - Performance-critical driver components can be integrated directly into kernelspace as required
-
-- **Security & System Calls**:
-  - Capability based security
-  - System call interface that offers close control over system primitives
-
-- **Bootloader**:
-  - Uses the [Limine Boot Protocol](https://github.com/limine-bootloader/limine)
+Catalyst is in early development. It is written in C23 and assembly language.
 
 ## Hardware Support
 
@@ -29,10 +14,6 @@ This repository exists solely for record keeping purposes at this point.
 ## Building
 
 Building is as simple as running `make`.
-
-## Contributing
-
-If you're interested in contributing to the Catalyst Kernel, please reach out to [mdpatel.econ@gmail.com](mailto:mdpatel.econ@gmail.com).
 
 ## License
 
