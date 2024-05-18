@@ -1,6 +1,7 @@
 #ifndef PANIC_API_H
 #define PANIC_API_H
 
+#include <libk/common.h>
 #include "arch/api.h"
 #include "log/log.h"
 

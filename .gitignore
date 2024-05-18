@@ -1,10 +1,2 @@
-/limine
-/ovmf*
-*.iso
-*.hdd
-/.vscode
-debug.txt
-.cache/
-compile_commands.json
-.gitignore
-log.txt
+build/*
+vendor/*

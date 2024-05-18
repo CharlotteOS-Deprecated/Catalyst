@@ -18,17 +18,18 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include <stddef.h>
 
-#include "limine.h"
+#include <limine.h>
+#include <libk/common.h>
 #include "log.h"
 
-#include "arch/api.h"
+#include <arch/api.h>
 
 #include <flanterm/backends/fb.h>
 #include <flanterm/flanterm.h>
 
-#include "boot/requests.h"
+#include <boot/requests.h>
 
-#include "utility/string.h"
+#include <utility/string.h>
 
 static struct flanterm_context *ft_ctx = nullptr;
 

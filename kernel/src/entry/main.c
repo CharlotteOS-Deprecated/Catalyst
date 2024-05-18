@@ -20,14 +20,15 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <stddef.h>
 #include <stdint.h>
 
-#include "arch/api.h"
-#include "arch/x86_64/cpu.h"
-#include "arch/x86_64/cpuid/cpuid.h"
-#include "arch/x86_64/exceptions.h"
-#include "boot/requests.h"
-#include "log/log.h"
-#include "utility/string.h"
-#include "utility/type_conv.h"
+#include <libk/common.h>
+#include <arch/api.h>
+#include <arch/x86_64/cpu.h>
+#include <arch/x86_64/cpuid/cpuid.h>
+#include <arch/x86_64/exceptions.h>
+#include <boot/requests.h>
+#include <log/log.h>
+#include <utility/string.h>
+#include <utility/type_conv.h>
 
 static const char license_string[] =
     "Catalyst: A General Purpose OS Kernel\r\n\r\n"

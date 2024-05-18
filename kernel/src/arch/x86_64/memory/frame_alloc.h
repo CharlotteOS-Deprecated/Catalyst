@@ -1,6 +1,7 @@
 #ifndef MEMORY_FRAME_ALLOC
 #define MEMORY_FRAME_ALLOC
 
+#include <libk/common.h>
 #include <stddef.h>
 #include <stdint.h>
 

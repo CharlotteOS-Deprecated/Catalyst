@@ -1,7 +1,7 @@
 #ifndef BOOT_INFO
 #define BOOT_INFO
 
-#include "limine.h"
+#include <limine.h>
 
 extern struct limine_memmap_request memory_map_request;
 extern struct limine_framebuffer_request fb_request;

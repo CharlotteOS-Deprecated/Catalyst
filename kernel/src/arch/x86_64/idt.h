@@ -19,6 +19,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #ifndef IDT_H
 #define IDT_H
 
+#include <libk/common.h>
 #include <stddef.h>
 #include <stdint.h>
 

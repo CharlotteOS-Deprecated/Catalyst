@@ -1,3 +1,4 @@
+#include <libk/common.h>
 #include "cpuid.h"
 #include "utility/string.h"
 #include <stdint.h>

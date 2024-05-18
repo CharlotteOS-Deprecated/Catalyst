@@ -1,6 +1,7 @@
 #ifndef MEMORY_TYPES_H
 #define MEMORY_TYPES_H
 
+#include <libk/common.h>
 #include <stdint.h>
 
 typedef uint64_t paddr_t;
