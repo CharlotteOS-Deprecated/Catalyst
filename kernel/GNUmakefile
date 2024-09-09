@@ -31,7 +31,7 @@ endif
 
 # Same thing for "ld" (the linker).
 override DEFAULT_LD := ld
-$(eval $(call DEFAULT_VAR,LD,ld.lld))
+$(eval $(call DEFAULT_VAR,LD,ld))
 
 # User controllable C flags.
 override DEFAULT_CFLAGS := -g -O2 -pipe
