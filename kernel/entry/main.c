@@ -30,8 +30,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "utility/type_conv.h"
 
 static const char license_string[] =
-    "Catalyst: A General Purpose OS Kernel\r\n\r\n"
-    "Copyright (C) 2023  Mohit D. Patel (mdpatelcsecon)\r\n\r\n"
+    "Catalyst: A General Purpose OS Kernel\n\n"
+    "Copyright (C) 2024 Project Felinity\n\n"
 
     "This program is free software: you can redistribute it and/or modify\r\n"
     "it under the terms of the GNU General Public License as published by\r\n"
@@ -44,18 +44,15 @@ static const char license_string[] =
     "GNU General Public License for more details.\r\n"
 
     "You should have received a copy of the GNU General Public License\r\n"
-    "along with this program. If not, see https://www.gnu.org/licenses/\r\n\r\n";
+    "along with this program. If not, see https://www.gnu.org/licenses/\n\n";
 // kernel entry point
-extern void main(void)
-{
+extern void main(void) {
 	// initialize COM1
 	if (isa_init_serial()) {
 		isa_hcf();
 	}
 	log_init();
 
-	log_puts(license_string);
-	log_puts("\r\n");
 	log_puts("Initializing Catalyst\r\n");
 	log_puts("\r\n");
 
@@ -99,7 +96,9 @@ extern void main(void)
 		log_puts("Higher Half Direct Map available at virtual address ");
 		log_putln(utility_u64_to_hex_str(hhdm_request.response->offset, temp_str));
 	}
+	// Print out our license
 
+	log_puts(license_string);
 	// We're done, just hang...
 	log_putln("Halting");
 	isa_hcf();
