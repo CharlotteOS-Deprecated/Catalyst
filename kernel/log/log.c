@@ -27,7 +27,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include <flanterm/flanterm.h>
 
 #include "boot/requests.h"
-
+#include "font.h"
 #include "utility/string.h"
 
 static struct flanterm_context *ft_ctx = nullptr;
@@ -37,8 +37,12 @@ void log_init(void)
 	/*Initialize the flanterm context*/
 	if (fb_request.response) {
 		struct limine_framebuffer *first_fb = fb_request.response->framebuffers[0];
-		ft_ctx = flanterm_fb_simple_init(first_fb->address, first_fb->width,
-						 first_fb->height, first_fb->pitch);
+		ft_ctx = flanterm_fb_init(
+		    NULL, NULL, first_fb->address, first_fb->width, first_fb->height,
+		    first_fb->pitch, first_fb->red_mask_size, first_fb->red_mask_shift,
+		    first_fb->green_mask_size, first_fb->green_mask_shift, first_fb->blue_mask_size,
+		    first_fb->blue_mask_shift, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+		    (void *)FONT, FONT_WIDTH, FONT_HEIGHT, 1, 0, 0, 0);
 	}
 }
 
