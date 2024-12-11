@@ -7,9 +7,9 @@ Catalyst is in early development. It is written in C23 and assembly language.
 
 ## Hardware Support
 
-- x86-64 implementation in progress
-- Aarch64 support planned
-- UEFI and ACPI are required
+- x86-64
+- Aarch64
+   - Required to meet the requirements for either SystemReady or SystemReady DeviceTree
 
 ## Building
 
