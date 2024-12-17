@@ -1,20 +1,18 @@
+### CharlotteOS
+
 # Catalyst
 
 ### Implementation Languages
-
-* C23
-* Assembly 
-
-### Status
-
-Catalyst is in early development. It is written in C23 and assembly language.
+- C23
+- Assembly Language
 
 ### Targets
+- x86_64
+- Aarch64*
 
-- x86-64 implementation in progress
-- Aarch64 support planned
-- UEFI and ACPI are required
+*Only devices that meet the requirements specified by ARM for either of the two bands of the SystemReady program are being targeted at this point.
 
-## Building
+### Contributing
 
-Building is as simple as running `make`.
+Feel free to make a PR in this repo, participate in the discussion section, and open issues for any changes or features
+you think would enhance the project. Everyone who wants to participate is welcome to do so!
