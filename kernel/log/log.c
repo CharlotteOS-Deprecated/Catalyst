@@ -46,15 +46,16 @@ void log_init(void)
 	}
 }
 
-inline void log_putc(const char c)
+void log_putc(const char c)
 {
 	isa_serial_putc(c);
+	flanterm_write(ft_ctx, &c, 1);
 }
 
 void log_puts(const char *const str)
 {
 	for (size_t i = 0; str[i] != '\0'; ++i) {
-		log_putc(str[i]);
+		isa_serial_putc(str[i]);
 	}
 	flanterm_write(ft_ctx, str, utility_strlen(str));
 }

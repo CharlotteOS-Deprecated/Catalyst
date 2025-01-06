@@ -20,6 +20,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #define LOG_H
 
 void log_init(void);
+void log_putc(const char c);
 void log_puts(const char *str);
 void log_putln(const char *const str);
 

@@ -26,6 +26,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "arch/x86_64/exceptions.h"
 #include "boot/requests.h"
 #include "log/log.h"
+#include "log/printv.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"
 
@@ -99,6 +100,9 @@ extern void main(void)
 		log_puts("Higher Half Direct Map available at virtual address ");
 		log_putln(utility_u64_to_hex_str(hhdm_request.response->offset, temp_str));
 	}
+
+	printv("Testing printv\nString: %s\nDecimal: %d\nHex: %s\nBinary: %b\n",
+	       (size_t[]){(size_t)"Hello, World!", 42ull, 42ull, 42ull});
 
 	// We're done, just hang...
 	log_putln("Halting");

@@ -37,6 +37,10 @@ run-hdd: run-hdd-$(ARCH)
 run-x86_64: ovmf $(IMAGE_NAME).iso
 	qemu-system-x86_64 -M q35 -cpu host -enable-kvm -m 2G -vga virtio -bios ovmf-x86_64/OVMF.fd -cdrom $(IMAGE_NAME).iso -boot d -serial file:log.txt
 
+.PHONY: run-x86_64-dbg
+run-x86_64-dbg: ovmf $(IMAGE_NAME).iso
+	qemu-system-x86_64 -M q35 -cpu host -enable-kvm -m 2G -vga virtio -bios ovmf-x86_64/OVMF.fd -cdrom $(IMAGE_NAME).iso -boot d -serial file:log.txt -s -S
+
 .PHONY: run-hdd-x86_64
 run-hdd-x86_64: ovmf $(IMAGE_NAME).hdd
 	qemu-system-x86_64 -M q35 -cpu host -enable-kvm -m 2G -vga virtio -bios ovmf-x86_64/OVMF.fd -hda $(IMAGE_NAME).hdd -serial file:log.txt
