@@ -85,7 +85,7 @@ ovmf-riscv64:
 	cd ovmf-riscv64 && curl -o OVMF.fd https://retrage.github.io/edk2-nightly/bin/RELEASERISCV64_VIRT.fd && dd if=/dev/zero of=OVMF.fd bs=1 count=0 seek=33554432
 
 limine:
-	git clone https://github.com/limine-bootloader/limine.git --branch=v5.x-branch-binary --depth=1
+	git clone https://github.com/limine-bootloader/limine.git --branch=v8.x-binary --depth=1
 	$(MAKE) -C limine CC="$(HOST_CC)"
 
 .PHONY: kernel
@@ -95,7 +95,7 @@ kernel:
 $(IMAGE_NAME).iso: limine kernel
 	rm -rf iso_root
 	mkdir -p iso_root
-	cp kernel/catalyst.elf limine.cfg limine_wallpaper.jpg iso_root/
+	cp kernel/catalyst.elf limine.conf limine_wallpaper.jpg iso_root/
 	mkdir -p iso_root/EFI/BOOT
 ifeq ($(ARCH),x86_64)
 	cp -v limine/limine-bios.sys limine/limine-bios-cd.bin limine/limine-uefi-cd.bin iso_root/
@@ -138,7 +138,7 @@ endif
 	mkdir -p img_mount
 	sudo mount `cat loopback_dev`p1 img_mount
 	sudo mkdir -p img_mount/EFI/BOOT
-	sudo cp -v kernel/catalyst.elf limine.cfg img_mount/
+	sudo cp -v kernel/catalyst.elf limine.conf img_mount/
 ifeq ($(ARCH),x86_64)
 	sudo cp -v limine/limine-bios.sys img_mount/
 	sudo cp -v limine/BOOTX64.EFI img_mount/EFI/BOOT/

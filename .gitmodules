@@ -1,6 +1,3 @@
 [submodule "flanterm"]
 	path = flanterm
 	url = git@github.com:mintsuki/flanterm.git
-[submodule "pf"]
-	path = pf
-	url = git@github.com:kparc/pf.git
