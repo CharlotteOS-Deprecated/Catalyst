@@ -19,6 +19,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 /*freestanding headers*/
 #include <stddef.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "arch/api.h"
 #include "arch/x86_64/cpu.h"
@@ -101,10 +102,11 @@ extern void main(void)
 		log_putln(utility_u64_to_hex_str(hhdm_request.response->offset, temp_str));
 	}
 
-	printv("Testing printv\nString: %s\nDecimal: %d\nHex: %s\nBinary: %b\n",
+	printv("Testing printv\nString: %s\nDecimal: %d\nHex: %x\nBinary: %b\n",
 	       (size_t[]){(size_t)"Hello, World!", 42ull, 42ull, 42ull});
+	printv("Testing without arguments.\n", nullptr);
 
 	// We're done, just hang...
-	log_putln("Halting");
+	log_putln("Initialization complete, waiting for interrupts...");
 	isa_hcf();
 }

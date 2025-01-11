@@ -5,7 +5,7 @@
 
 void printv(const char *const format, void *const args)
 {
-	if (!format || !args)
+	if (!format)
 		return; // Null check
 
 	size_t count = 0ull, argnum = 0ull;
