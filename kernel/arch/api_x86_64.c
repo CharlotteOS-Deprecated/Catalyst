@@ -23,7 +23,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "arch/x86_64/cpu.h"
 #include "arch/x86_64/gdt.h"
 #include "arch/x86_64/idt.h"
-#include "arch/x86_64/serial.h"
+#include "drivers/uart/ns16550/serial.h"
 #include "arch/x86_64/tss.h"
 #include "log/log.h"
 #include "utility/string.h"
@@ -59,14 +59,14 @@ void isa_init_bsp(void)
 	setup_idt(BSP_IDT);
 }
 
-/*Serial Port*/
-int32_t isa_init_serial(void)
+/*Port I/O*/
+inline uint8_t isa_port_in(const uint16_t port)
 {
-	init_serial();
-	return 0;
+	return inb(port);
 }
-void isa_serial_putc(const char c)
+inline void isa_port_out(const uint16_t port, const uint8_t data)
 {
-	serial_putc(c);
+	outb(port, data);
 }
+
 #endif

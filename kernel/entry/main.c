@@ -26,6 +26,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "arch/x86_64/cpuid/cpuid.h"
 #include "arch/x86_64/exceptions.h"
 #include "boot/requests.h"
+#include "drivers/uart/ns16550/serial.h"
 #include "log/log.h"
 #include "log/printv.h"
 #include "utility/string.h"
@@ -51,7 +52,7 @@ static const char license_string[] =
 extern void main(void)
 {
 	// initialize COM1
-	if (isa_init_serial()) {
+	if (ns16550_init_serial()) {
 		isa_hcf();
 	}
 	log_init();

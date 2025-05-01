@@ -21,7 +21,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "limine.h"
 #include "log.h"
 
-#include "arch/api.h"
+#include "drivers/uart/ns16550/serial.h"
 
 #include <flanterm/backends/fb.h>
 #include <flanterm/flanterm.h>
@@ -48,14 +48,14 @@ void log_init(void)
 
 void log_putc(const char c)
 {
-	isa_serial_putc(c);
+	ns16550_serial_putc(c);
 	flanterm_write(ft_ctx, &c, 1);
 }
 
 void log_puts(const char *const str)
 {
 	for (size_t i = 0; str[i] != '\0'; ++i) {
-		isa_serial_putc(str[i]);
+		ns16550_serial_putc(str[i]);
 	}
 	flanterm_write(ft_ctx, str, utility_strlen(str));
 }

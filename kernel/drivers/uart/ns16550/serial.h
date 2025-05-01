@@ -16,13 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
+/** NS16550 Compatible UART Driver */
+
 #ifndef SERIAL_H
 #define SERIAL_H
 
 #include <stddef.h>
 #include <stdint.h>
 
-int init_serial(void);
-char serial_putc(char c);
+int ns16550_init_serial(void);
+char ns16550_serial_putc(char c);
 
 #endif

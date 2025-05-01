@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "arch/x86_64/serial.h"
+#include "serial.h"
 #include "arch/x86_64/cpu.h"
 
 #include <stdbool.h>
@@ -25,7 +25,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #define PORT 0x3f8 // COM1
 
-int init_serial(void)
+int ns16550_init_serial(void)
 {
 	outb(PORT + 1, 0x00); // Disable all interrupts
 	outb(PORT + 3, 0x80); // Enable DLAB (set baud rate divisor)
@@ -54,7 +54,7 @@ int is_transmit_empty(void)
 	return inb(PORT + 5) & 0x20;
 }
 
-char serial_putc(char c)
+char ns16550_serial_putc(char c)
 {
 	while (is_transmit_empty() == 0)
 		;

@@ -44,15 +44,15 @@ void isa_init_bsp(void);
 /*
 Halt (and catch fire)
 Preconditions: None
-Postconditions: The logical processor is halted until a nonmaskable interrupt occurs
+Postconditions: The logical processor is halted until an interrupt occurs
 Note: This function never returns
 */
 [[noreturn]]
 void isa_hcf(void);
 
-/*Serial Port*/
-int32_t isa_init_serial(void);
-void isa_serial_putc(const char c);
+// Port I/O
+uint8_t isa_port_in(const uint16_t port);
+void isa_port_out(const uint16_t port, const uint8_t data);
 
 extern void interrupt_test(void);
 
