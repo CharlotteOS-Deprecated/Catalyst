@@ -27,8 +27,8 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "arch/x86_64/exceptions.h"
 #include "boot/requests.h"
 #include "drivers/uart/ns16550/serial.h"
-#include "log/log.h"
-#include "log/printv.h"
+#include "init/init.h"
+#include "log/printf.h"
 #include "utility/string.h"
 #include "utility/type_conv.h"
 
@@ -51,63 +51,54 @@ static const char license_string[] =
 // kernel entry point
 extern void main(void)
 {
-	// initialize COM1
-	if (ns16550_init_serial()) {
-		isa_hcf();
-	}
-	log_init();
 
-	log_puts(license_string);
-	log_puts("\r\n");
-	log_puts("Initializing Catalyst\r\n");
-	log_puts("\r\n");
+	ct_init();
+
+	printf(license_string);
+	printf("Initializing Catalyst\r\n\r\n");
 
 	isa_init_bsp();
-	log_puts("Initialized BSP\r\n");
+	printf("Initialized BSP\r\n");
 
 	// log_puts("Performing interrupt test\r\n");
 	// interrupt();
 	// log_puts("Returned from interrupt service routine\r\n");
 
-	log_puts("Memory Map Response Address: ");
-	log_putln(utility_u64_to_hex_str((uint64_t)memory_map_request.response, temp_str));
+	printf("Memory Map Response Address: %x\r\n", memory_map_request.response);
 
-	log_putln("Obtaining CPU information...");
+	printf("Obtaining CPU information...");
 	enum cpuid_status id_err = get_cpuid_info(&cpuinfo);
-	log_puts("Obtaining CPU information complete with status: ");
+	printf("Obtaining CPU information complete with status: ");
 	switch (id_err) {
 	case CPUID_NOT_SUPPORTED:
-		log_putln("CPUID_NOT_SUPPORTED");
+		printf("CPUID_NOT_SUPPORTED\r\n");
 		break;
 	case INVALID_DEST:
-		log_putln("INVALID_DEST");
+		printf("INVALID_DEST\r\n");
 		break;
 	case SUCCESS:
-		log_putln("SUCCESS");
-		log_puts("CPU vendor ID: ");
-		log_putln(cpuinfo.vendor_id);
-		log_puts("Max supported EAX value for CPUID instruction: ");
-		log_putln(utility_u64_to_dec_str(cpuinfo.max_cpuid_eax, temp_str));
-		log_puts("Number of significant physical address bits: ");
-		log_putln(utility_u64_to_dec_str(cpuinfo.paddr_bits, temp_str));
-		log_puts("Number of significant virtual address bits: ");
-		log_putln(utility_u64_to_dec_str(cpuinfo.vaddr_bits, temp_str));
+		printf("SUCCESS\r\n");
+		printf("CPU vendor ID: %s\r\n", cpuinfo.vendor_id);
+		printf("Max supported EAX value for CPUID instruction: %x\r\n",
+		       cpuinfo.max_cpuid_eax);
+		printf("Number of significant physical address bits: %x\r\n", cpuinfo.paddr_bits);
+		printf("Number of significant virtual address bits: %x\r\n", cpuinfo.vaddr_bits);
 		break;
 	}
 
-	log_putln("Checking Limine HHDM request for response");
+	printf("Checking Limine HHDM request for response");
 	if (hhdm_request.response == nullptr) {
-		log_putln("Higher Half Direct Map not available");
+		printf("Higher Half Direct Map not available");
 	} else {
-		log_puts("Higher Half Direct Map available at virtual address ");
-		log_putln(utility_u64_to_hex_str(hhdm_request.response->offset, temp_str));
+		printf("Higher Half Direct Map available at virtual address %x\r\n",
+		       hhdm_request.response->offset);
 	}
 
-	printv("Testing printv\nString: %s\nDecimal: %d\nHex: %x\nBinary: %b\n",
-	       (size_t[]){(size_t)"Hello, World!", 42ull, 42ull, 42ull});
-	printv("Testing without arguments.\n", nullptr);
+	printf("Testing printf\nString: %s\nDecimal: %d\nHex: %x\nBinary: %b\n",
+	       "The meaning of life is...", 42ull, 42ull, 42ull);
+	printf("Testing printf without arguments.\n");
 
 	// We're done, just hang...
-	log_putln("Initialization complete, waiting for interrupts...");
+	printf("Initialization complete, waiting for interrupts...");
 	isa_hcf();
 }
