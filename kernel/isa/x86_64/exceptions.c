@@ -1,4 +1,4 @@
-#include "arch/x86_64/exceptions.h"
+#include "isa/x86_64/exceptions.h"
 
 // freestanding
 #include <stddef.h>
@@ -9,8 +9,8 @@
 // out-of-module
 #include "log/log.h"
 #include "panic/api.h"
-#include "utility/string.h"
-#include "utility/type_conv.h"
+#include "lib/string.h"
+#include "lib/type_conv.h"
 
 /*
 Raw Exception Handlers

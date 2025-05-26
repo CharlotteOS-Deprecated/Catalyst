@@ -28,7 +28,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "boot/requests.h"
 #include "font.h"
-#include "utility/string.h"
+#include "lib/string.h"
 
 static struct flanterm_context *ft_ctx = nullptr;
 
@@ -44,6 +44,7 @@ void log_init(void)
 		    first_fb->blue_mask_shift, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		    (void *)FONT, FONT_WIDTH, FONT_HEIGHT, 1, 0, 0, 0);
 	}
+	ns16550_init_serial();
 }
 
 void log_putc(const char c)

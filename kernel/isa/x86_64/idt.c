@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#include "arch/x86_64/idt.h"
+#include "isa/x86_64/idt.h"
 
-#include "arch/x86_64/exceptions.h"
-#include "arch/x86_64/gdt.h"
-#include "arch/x86_64/tss.h"
+#include "isa/x86_64/exceptions.h"
+#include "isa/x86_64/gdt.h"
+#include "isa/x86_64/tss.h"
 #include "log/log.h"
 #include "panic/api.h"
-#include "utility/string.h"
-#include "utility/type_conv.h"
+#include "lib/string.h"
+#include "lib/type_conv.h"
 
 void set_gate_descriptor(idt_t idt, const uint8_t index, void (*offset)(void),
 			 const uint16_t segment_selector, const enum gate_type type,

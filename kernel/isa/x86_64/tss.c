@@ -16,19 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
-#ifndef GDT_H
-#define GDT_H
+#include "isa/x86_64/tss.h"
 
-#include <stddef.h>
-#include <stdint.h>
+#include "lib/string.h"
 
-#include "arch/x86_64/tss.h"
+#define IOPB_END_BYTE 0xFF
 
-#define GDT_N_ELEMENTS 7
+void setup_tss(tss_t tss, void *const rsp0)
+{
+	// Zero out the TSS
+	utility_memset(tss, 0, sizeof(uint32_t) * 27);
 
-typedef uint64_t gdt_t[GDT_N_ELEMENTS];
+	// Set the value of the kernel stack
+	uint64_t rsp0_uint = (uint64_t)rsp0;
 
-void setup_gdt(gdt_t gdt, tss_t tss, void *const rsp0);
-void load_gdt(gdt_t gdt);
+	tss[1] = (uint32_t)(rsp0_uint & 0xFFFFFFFF);
+	tss[2] = (uint32_t)((rsp0_uint & 0xFFFFFFFF00000000) >> 32);
 
-#endif
+	// Set the offset of the IOPB
+	tss[26] = 104 << 16;
+	// Set the first byte of the IOPB to the end byte (all 1s) to signal that the IOPB will not
+	// be used
+	tss[27] = 0xFF;
+}

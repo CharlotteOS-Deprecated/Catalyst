@@ -19,18 +19,12 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 /*freestanding headers*/
 #include <stddef.h>
 #include <stdint.h>
-#include <string.h>
 
-#include "arch/api.h"
-#include "arch/x86_64/cpu.h"
-#include "arch/x86_64/cpuid/cpuid.h"
-#include "arch/x86_64/exceptions.h"
 #include "boot/requests.h"
-#include "drivers/uart/ns16550/serial.h"
 #include "init/init.h"
+#include "isa/api.h"
+#include "isa/x86_64/cpuid/cpuid.h"
 #include "log/printf.h"
-#include "utility/string.h"
-#include "utility/type_conv.h"
 
 static const char license_string[] =
     "Catalyst: A General Purpose OS Kernel\r\n\r\n"

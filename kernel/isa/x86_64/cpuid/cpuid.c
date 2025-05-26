@@ -1,5 +1,5 @@
 #include "cpuid.h"
-#include "utility/string.h"
+#include "lib/string.h"
 #include <stdint.h>
 
 extern bool asm_is_cpuid_available(void);

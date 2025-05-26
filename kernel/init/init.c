@@ -1,6 +1,5 @@
 #include "init.h"
 
-#include "drivers/uart/ns16550/serial.h"
 #include "log/log.h"
 #include "log/printf.h"
 
@@ -12,10 +11,6 @@ enum init_status ct_init()
 	// It should return INIT_SUCCESS if the initialization was successful,
 	// INIT_FAILURE if there was an error, and INIT_HALT if the kernel
 	// should halt.
-	// initialize COM1
-	if (ns16550_init_serial()) {
-		printf("Serial port initialization failed\r\n");
-	}
 	log_init();
 	return INIT_SUCCESS;
 }
