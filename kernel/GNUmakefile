@@ -30,8 +30,8 @@ ifeq ($(shell $(CC) --version 2>&1 | grep -i 'clang' >/dev/null 2>&1 && echo 1),
 endif
 
 # Same thing for "ld" (the linker).
-override DEFAULT_LD := ld
-$(eval $(call DEFAULT_VAR,LD,ld))
+override DEFAULT_LD := ld.lld
+$(eval $(call DEFAULT_VAR,LD,$(DEFAULT_LD)))
 
 # User controllable C flags.
 override DEFAULT_CFLAGS := -g -O2 -pipe
@@ -132,7 +132,7 @@ override LDFLAGS += \
     --no-dynamic-linker \
     -z text \
     -z max-page-size=0x1000 \
-    -T linker-$(ARCH).ld
+    -T linker/linker-$(ARCH).ld
 
 # Use "find" to glob all *.c, *.S, and *.asm files in the tree and obtain the
 # object and header dependency file names.
