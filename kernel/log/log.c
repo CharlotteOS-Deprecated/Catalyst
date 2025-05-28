@@ -28,7 +28,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "boot/requests.h"
 #include "font.h"
-#include "lib/string.h"
+#include "lib/string/string.h"
 
 static struct flanterm_context *ft_ctx = nullptr;
 

@@ -1,7 +1,7 @@
 #include "printf.h"
 
+#include "lib/string/type_conv.h"
 #include "log.h"
-#include "lib/type_conv.h"
 
 #include <stdarg.h>
 #include <stddef.h>

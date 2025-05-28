@@ -7,10 +7,10 @@
 #include "cpu.h"
 
 // out-of-module
+#include "lib/string/string.h"
+#include "lib/string/type_conv.h"
 #include "log/log.h"
 #include "panic/api.h"
-#include "lib/string.h"
-#include "lib/type_conv.h"
 
 /*
 Raw Exception Handlers

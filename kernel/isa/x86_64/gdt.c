@@ -23,9 +23,9 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "isa/x86_64/cpu.h"
 #include "isa/x86_64/tss.h"
+#include "lib/string/string.h"
+#include "lib/string/type_conv.h"
 #include "log/log.h"
-#include "lib/string.h"
-#include "lib/type_conv.h"
 
 void create_segment_descriptor(uint64_t *const segment_descriptor, const uint32_t base,
 			       const uint32_t limit, const uint8_t access_byte, const uint8_t flags)

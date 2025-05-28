@@ -18,7 +18,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 
 #include "isa/x86_64/tss.h"
 
-#include "lib/string.h"
+#include "lib/string/string.h"
 
 #define IOPB_END_BYTE 0xFF
 

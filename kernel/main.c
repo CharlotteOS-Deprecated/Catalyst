@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/
 */
 
+#include <lib/prelude/prelude.h>
+
 /*freestanding headers*/
 #include <stddef.h>
 #include <stdint.h>
@@ -24,7 +26,6 @@ along with this program.  If not, see https://www.gnu.org/licenses/
 #include "init/init.h"
 #include "isa/api.h"
 #include "isa/x86_64/cpuid/cpuid.h"
-#include "log/printf.h"
 
 static const char license_string[] =
     "Catalyst: A General Purpose OS Kernel\r\n\r\n"
