@@ -1,5 +1,4 @@
 #include "boot/requests.h"
-#include "limine.h"
 
 #include <stddef.h>
 

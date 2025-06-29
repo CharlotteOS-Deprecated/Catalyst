@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <isa/types.h>
 #include <log/printf.h>
 #include <panic/api.h>
 
