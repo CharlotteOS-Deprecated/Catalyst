@@ -1,9 +1,9 @@
 # .clang-format file for Linux kernel style guide
 
 BasedOnStyle: LLVM
-IndentWidth: 8
-UseTab: Always
-TabWidth: 8
+IndentWidth: 4
+UseTab: Never
+TabWidth: 4
 BreakBeforeBraces: Linux
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false

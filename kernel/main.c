@@ -47,53 +47,52 @@ static const char license_string[] =
 extern void main(void)
 {
 
-	ct_init();
+    ct_init();
 
-	printf(license_string);
-	printf("Initializing Catalyst\r\n\r\n");
+    printf(license_string);
+    printf("Initializing Catalyst\r\n\r\n");
 
-	isa_init_bsp();
-	printf("Initialized BSP\r\n");
+    isa_init_bsp();
+    printf("Initialized BSP\r\n");
 
-	// log_puts("Performing interrupt test\r\n");
-	// interrupt();
-	// log_puts("Returned from interrupt service routine\r\n");
+    // log_puts("Performing interrupt test\r\n");
+    // interrupt();
+    // log_puts("Returned from interrupt service routine\r\n");
 
-	printf("Memory Map Response Address: %x\r\n", memory_map_request.response);
+    printf("Memory Map Response Address: %x\r\n", memory_map_request.response);
 
-	printf("Obtaining CPU information...");
-	enum cpuid_status id_err = get_cpuid_info(&cpuinfo);
-	printf("Obtaining CPU information complete with status: ");
-	switch (id_err) {
-	case CPUID_NOT_SUPPORTED:
-		printf("CPUID_NOT_SUPPORTED\r\n");
-		break;
-	case INVALID_DEST:
-		printf("INVALID_DEST\r\n");
-		break;
-	case SUCCESS:
-		printf("SUCCESS\r\n");
-		printf("CPU vendor ID: %s\r\n", cpuinfo.vendor_id);
-		printf("Max supported EAX value for CPUID instruction: %x\r\n",
-		       cpuinfo.max_cpuid_eax);
-		printf("Number of significant physical address bits: %x\r\n", cpuinfo.paddr_bits);
-		printf("Number of significant virtual address bits: %x\r\n", cpuinfo.vaddr_bits);
-		break;
-	}
+    printf("Obtaining CPU information...");
+    enum cpuid_status id_err = get_cpuid_info(&cpuinfo);
+    printf("Obtaining CPU information complete with status: ");
+    switch (id_err) {
+    case CPUID_NOT_SUPPORTED:
+        printf("CPUID_NOT_SUPPORTED\r\n");
+        break;
+    case INVALID_DEST:
+        printf("INVALID_DEST\r\n");
+        break;
+    case SUCCESS:
+        printf("SUCCESS\r\n");
+        printf("CPU vendor ID: %s\r\n", cpuinfo.vendor_id);
+        printf("Max supported EAX value for CPUID instruction: %x\r\n", cpuinfo.max_cpuid_eax);
+        printf("Number of significant physical address bits: %x\r\n", cpuinfo.paddr_bits);
+        printf("Number of significant virtual address bits: %x\r\n", cpuinfo.vaddr_bits);
+        break;
+    }
 
-	printf("Checking Limine HHDM request for response");
-	if (hhdm_request.response == nullptr) {
-		printf("Higher Half Direct Map not available");
-	} else {
-		printf("Higher Half Direct Map available at virtual address %x\r\n",
-		       hhdm_request.response->offset);
-	}
+    printf("Checking Limine HHDM request for response");
+    if (hhdm_request.response == nullptr) {
+        printf("Higher Half Direct Map not available");
+    } else {
+        printf("Higher Half Direct Map available at virtual address %x\r\n",
+               hhdm_request.response->offset);
+    }
 
-	printf("Testing printf\nString: %s\nDecimal: %d\nHex: %x\nBinary: %b\n",
-	       "The meaning of life is...", 42ull, 42ull, 42ull);
-	printf("Testing printf without arguments.\n");
+    printf("Testing printf\nString: %s\nDecimal: %d\nHex: %x\nBinary: %b\n",
+           "The meaning of life is...", 42ull, 42ull, 42ull);
+    printf("Testing printf without arguments.\n");
 
-	// We're done, just hang...
-	printf("Initialization complete, waiting for interrupts...");
-	isa_hcf();
+    // We're done, just hang...
+    printf("Initialization complete, waiting for interrupts...");
+    isa_hcf();
 }

@@ -40,33 +40,33 @@ static idt_t BSP_IDT;
 /*CPU*/
 inline void isa_disable_interrupts(void)
 {
-	disable_interrupts();
+    disable_interrupts();
 }
 inline void isa_enable_interrupts(void)
 {
-	enable_interrupts();
+    enable_interrupts();
 }
 [[noreturn]]
 void isa_hcf(void)
 {
-	hcf();
+    hcf();
 }
 void isa_init_bsp(void)
 {
-	// setup and load the GDT and TSS
-	setup_gdt(BSP_GDT, BSP_TSS, BSP_STACK);
-	// setup the IDT with execption handlers and load it
-	setup_idt(BSP_IDT);
+    // setup and load the GDT and TSS
+    setup_gdt(BSP_GDT, BSP_TSS, BSP_STACK);
+    // setup the IDT with execption handlers and load it
+    setup_idt(BSP_IDT);
 }
 
 /*Port I/O*/
 inline uint8_t isa_port_in(const uint16_t port)
 {
-	return inb(port);
+    return inb(port);
 }
 inline void isa_port_out(const uint16_t port, const uint8_t data)
 {
-	outb(port, data);
+    outb(port, data);
 }
 
 #endif

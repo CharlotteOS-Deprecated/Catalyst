@@ -6,7 +6,6 @@
 #include <log/printf.h>
 #include <panic/api.h>
 
-#include "typedefs.h"
 /*Kernel Prelude
 
     * This header file is included in every kernel source file.
