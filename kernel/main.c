@@ -74,9 +74,9 @@ extern void main(void)
     case SUCCESS:
         printf("SUCCESS\r\n");
         printf("CPU vendor ID: %s\r\n", cpuinfo.vendor_id);
-        printf("Max supported EAX value for CPUID instruction: %x\r\n", cpuinfo.max_cpuid_eax);
-        printf("Number of significant physical address bits: %x\r\n", cpuinfo.paddr_bits);
-        printf("Number of significant virtual address bits: %x\r\n", cpuinfo.vaddr_bits);
+        printf("Max supported EAX value for CPUID instruction: %d\r\n", cpuinfo.max_cpuid_eax);
+        printf("Number of significant physical address bits: %d\r\n", cpuinfo.paddr_bits);
+        printf("Number of significant virtual address bits: %d\r\n", cpuinfo.vaddr_bits);
         break;
     }
 
