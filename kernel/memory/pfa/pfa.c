@@ -1,47 +1,39 @@
-#include <lib/prelude/prelude.h>
+#include "lib/prelude/prelude.h"
 
 #include <limine.h>
+#include <stddef.h>
 
-// static u8 PFA_ME = 0;
-static usize PFA_BITMAP_SIZE;
-
-const usize FRAME_SIZE = 4096;
-const usize BITS_PER_BYTE = 8;
+const size_t FRAME_SIZE = 4096ull;
+const size_t BITS_PER_BYTE = 8ull;
 
 enum pfa_status {
-	PFA_SUCCESS = 0,
-	PFA_INVALID_MEMORY_MAP,
+    PFA_SUCCESS = 0,
+    PFA_INVALID_MEMORY_MAP,
+    PFA_REGION_ALLOC_FULL,
 };
 
-[[maybe_unused]]
-static enum pfa_status pfa_get_bitmap_size(const struct limine_memmap_response *const response)
+struct physical_frame_allocator {
+    size_t total_frames;
+    size_t free_frames;
+    size_t committed_frames;
+    size_t frame_bitmap_size;
+    uint8_t *frame_bitmap;
+};
+
+size_t compute_bitmap_size(const struct limine_memmap_entry *const *const memory_map)
 {
-	usize highest_addr = 0, n_frames = 0, n_bytes = 0;
-	usize i;
-	const struct limine_memmap_entry *entry;
+    paddr_t highest_address = 0;
 
-	// find the highest address in the memory map
-	for (i = 0; i < response->entry_count; i++) {
-		entry = response->entries[i];
-		if (entry->base + entry->length > highest_addr) {
-			highest_addr = entry->base + entry->length;
-		}
-	}
-	// adjust the number of frames for a remainder
-	if (highest_addr % FRAME_SIZE) {
-		n_frames = highest_addr / FRAME_SIZE + 1;
-	} else {
-		n_frames = highest_addr / FRAME_SIZE;
-	}
-	// adjust the number of bytes for a remainder
-	if (n_frames % BITS_PER_BYTE) {
-		n_bytes = n_frames / BITS_PER_BYTE + 1;
-	} else {
-		n_bytes = n_frames / BITS_PER_BYTE;
-	}
+    for (size_t i = 0; memory_map[i] != NULL; i++) {
+        const struct limine_memmap_entry *entry = memory_map[i];
+        size_t region_size = entry->length / FRAME_SIZE;
+        highest_address = MAX(highest_address, entry->base + entry->length);
+    }
 
-	printf("PFA: highest_addr = %x, n_frames = %d, n_bytes = %d\n", highest_addr, n_frames,
-	       n_bytes);
-	PFA_BITMAP_SIZE = n_bytes;
-	return PFA_SUCCESS;
+    size_t bitmap_sz = highest_address / FRAME_SIZE;
+    if (highest_address % FRAME_SIZE != 0) {
+        ++bitmap_sz;
+    }
+
+    return bitmap_sz;
 }
